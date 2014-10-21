@@ -60,6 +60,11 @@ public class Compra {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
+
+    @Override
+    public String toString() {
+        return "Compra{" + "idCompra=" + idCompra + ", dataCompra=" + dataCompra + ", fornecedor=" + fornecedor + ", valorTotal=" + valorTotal + ", listaProdutos=" + listaProdutos + '}';
+    }
     
-    
+  
 }

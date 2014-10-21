@@ -64,5 +64,10 @@ public class Venda {
         
         
     }
-    
+
+    @Override
+    public String toString() {
+        return "Venda{" + "idVenda=" + idVenda + ", dataVenda=" + dataVenda + ", cliente=" + cliente + ", valorTotal=" + valorTotal + ", listaProdutos=" + listaProdutos + '}';
+    }
+  
 }

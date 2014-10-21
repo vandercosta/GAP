@@ -41,7 +41,12 @@ public class Fornecedor {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    @Override
+    public String toString() {
+        return "Fornecedor{" + "idFornecedor=" + idFornecedor + ", nome=" + nome + ", telefone=" + telefone + '}';
+    }
     
-    
+   
     
 }
