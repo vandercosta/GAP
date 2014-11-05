@@ -13,6 +13,4 @@ public class RelatorioFornecedor {
     Date dataEmissao;
     
     
-    
-    
 }

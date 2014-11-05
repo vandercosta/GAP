@@ -100,6 +100,11 @@ public class Funcionario {
     public void setDataDemissao(String dataDemissao) {
         this.dataDemissao = dataDemissao;
     }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" + "id_funcionario=" + id_funcionario + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", cpf=" + cpf + ", telefone=" + telefone + ", dataNascimento=" + dataNascimento + ", dataEntrada=" + dataEntrada + ", dataDemissao=" + dataDemissao + ", perfil=" + perfil + '}';
+    }
     
     
 }
