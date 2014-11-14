@@ -2,6 +2,8 @@
 
 package model;
 
+import java.util.Calendar;
+
 public class Funcionario {
     
     private int id_funcionario;
@@ -9,25 +11,16 @@ public class Funcionario {
     private String nomeUsuario;
     private long cpf;
     private String telefone;
-    private String dataNascimento;
-    private String dataEntrada;
-    private String dataDemissao;
+    private Calendar dataNascimento;
+    private Calendar dataEntrada;
+    private Calendar dataDemissao;
     private int perfil;
 
     public Funcionario() {
+        
     }
 
-    public Funcionario(int id_funcionario, String nome, String nomeUsuario, long cpf, String telefone, String dataNascimento, String dataEntrada, String dataDemissao, int perfil) {
-        this.id_funcionario = id_funcionario;
-        this.nome = nome;
-        this.nomeUsuario = nomeUsuario;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
-        this.dataEntrada = dataEntrada;
-        this.dataDemissao = dataDemissao;
-        this.perfil = perfil;
-    }
+
 
     public int getPerfil() {
         return perfil;
@@ -77,27 +70,27 @@ public class Funcionario {
         this.telefone = telefone;
     }
 
-    public String getDataNascimento() {
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getDataEntrada() {
+    public Calendar getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(String dataEntrada) {
+    public void setDataEntrada(Calendar dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public String getDataDemissao() {
+    public Calendar getDataDemissao() {
         return dataDemissao;
     }
 
-    public void setDataDemissao(String dataDemissao) {
+    public void setDataDemissao(Calendar dataDemissao) {
         this.dataDemissao = dataDemissao;
     }
 

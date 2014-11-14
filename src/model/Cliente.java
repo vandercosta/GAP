@@ -8,16 +8,10 @@ public class Cliente {
     private String cpf;
 
     public Cliente() {
+        
     }
     
     
-
-    public Cliente(int idCliente, String nome, String telefone, String cpf) {
-        this.idCliente = idCliente;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.cpf = cpf;
-    }
 
     public String getCpf() {
         return cpf;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.Fornecedor;
 
 
-public class ManterFornecedor {
+public class FornecedorDAO {
     private ArrayList<Fornecedor> listaFornecedores;
 
     public void cadastrarFornecedor(Fornecedor fornecedor) {

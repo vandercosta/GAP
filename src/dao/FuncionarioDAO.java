@@ -5,7 +5,7 @@ package dao;
 import java.util.ArrayList;
 import model.Funcionario;
 
-public class ManterFuncionario {
+public class FuncionarioDAO {
     
     ArrayList<Funcionario> listaFuncionarios;
     

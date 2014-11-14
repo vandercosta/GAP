@@ -10,17 +10,10 @@ public class Produto {
     private int quantidade;
 
     public Produto() {
+        
     }
 
-    public Produto(int idProduto, String nome, String modelo, String categoria, double valor, Fornecedor fornecedor, int quantidade) {
-        this.idProduto = idProduto;
-        this.nome = nome;
-        this.modelo = modelo;
-        this.categoria = categoria;
-        this.valor = valor;
-        this.fornecedor = fornecedor;
-        this.quantidade = quantidade;
-    }
+
 
     public int getQuantidade() {
         return quantidade;

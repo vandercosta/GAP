@@ -4,7 +4,7 @@ package dao;
 import java.util.ArrayList;
 import model.Produto;
 
-public class ManterProduto {
+public class ProdutoDAO {
     
     ArrayList<Produto> listaProdutos;
     

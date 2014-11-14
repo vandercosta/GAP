@@ -1,25 +1,21 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Compra {
 
     private int idCompra;
-    private int dataCompra;
+    private Calendar dataCompra;
     private Fornecedor fornecedor;
     private double valorTotal;
     private ArrayList<Produto> listaProdutos;
 
     public Compra() {
+        
     }
 
-    public Compra(int idCompra, int dataCompra, Fornecedor fornecedor, double valorTotal, ArrayList<Produto> listaProdutos) {
-        this.idCompra = idCompra;
-        this.dataCompra = dataCompra;
-        this.fornecedor = fornecedor;
-        this.valorTotal = valorTotal;
-        this.listaProdutos = listaProdutos;
-    }
+    
 
     public ArrayList<Produto> getListaProdutos() {
         return listaProdutos;
@@ -37,11 +33,11 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public int getDataCompra() {
+    public Calendar getDataCompra() {
         return dataCompra;
     }
 
-    public void setDataCompra(int dataCompra) {
+    public void setDataCompra(Calendar dataCompra) {
         this.dataCompra = dataCompra;
     }
 
