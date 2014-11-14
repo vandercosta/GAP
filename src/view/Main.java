@@ -17,7 +17,7 @@ public class Main {
         Fornecedor fornecedor1 = new Fornecedor();
         Cliente cliente1 = new Cliente();
         Produto produto1 = new Produto();
-        
+
         int op = 1;
         switch(op){
             
