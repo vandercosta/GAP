@@ -1,0 +1,7 @@
+Comentários da Karen no nosso trabalho: ver exemplo de login no Discoteca Completo que ela disponibilizou no moodle, compartilhar o trabalho no GIT, que tem controle de versões, acessar pelo bitbucket
+utilizar o CPF para identificador do cliente e do usuário e o CNPJ para o fornecedor
+usar o calendar para data de compra e de venda para poder utilizar como parâmetro pro relatório
+na compra e na venda não utilizar lista de produtos, fazer método addProduto
+tirar id_compra, já tem set ID compra
+criar classe usuário
+incluir estoque mínimo no produto
