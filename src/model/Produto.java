@@ -1,18 +1,23 @@
 package model;
 
+import java.util.Objects;
+
 public class Produto {
     private int idProduto;
     private String nome;
     private String modelo;
     private String categoria;
     private double valor;
-    private Fornecedor fornecedor;
     private int quantidade;
 
-    public Produto() {
-        
+    public Produto(int idProduto, String nome, String modelo, String categoria, double valor, int quantidade) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+        this.modelo = modelo;
+        this.categoria = categoria;
+        this.valor = valor;
+        this.quantidade = quantidade;
     }
-
 
 
     public int getQuantidade() {
@@ -63,18 +68,54 @@ public class Produto {
         this.valor = valor;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + this.idProduto;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.modelo);
+        hash = 41 * hash + Objects.hashCode(this.categoria);
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 41 * hash + this.quantidade;
+        return hash;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Produto other = (Produto) obj;
+        if (this.idProduto != other.idProduto) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valor) != Double.doubleToLongBits(other.valor)) {
+            return false;
+        }
+        if (this.quantidade != other.quantidade) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Produto{" + "idProduto=" + idProduto + ", nome=" + nome + ", modelo=" + modelo + ", categoria=" + categoria + ", valor=" + valor + ", fornecedor=" + fornecedor + ", quantidade=" + quantidade + '}';
+        return "Produto{" + "idProduto=" + idProduto + ", nome=" + nome + ", modelo=" + modelo + ", categoria=" + categoria + ", valor=" + valor + ", quantidade=" + quantidade + '}';
     }
+    
+    
     
     
 }

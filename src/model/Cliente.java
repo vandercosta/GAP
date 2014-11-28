@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Cliente {
 
     private int idCliente;
@@ -7,12 +9,20 @@ public class Cliente {
     private String telefone;
     private String cpf;
 
-    public Cliente() {
-        
+    public Cliente(int idCliente, String nome, String cpf) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public Cliente(int idCliente, String nome, String telefone, String cpf) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
     }
     
     
-
     public String getCpf() {
         return cpf;
     }
@@ -49,6 +59,42 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "idCliente=" + idCliente + ", nome=" + nome + ", telefone=" + telefone + ", cpf=" + cpf + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.idCliente;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.telefone);
+        hash = 41 * hash + Objects.hashCode(this.cpf);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.idCliente != other.idCliente) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
 }
