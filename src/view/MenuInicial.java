@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 public class MenuInicial extends javax.swing.JPanel implements ComandoJanelaInterna {
 
+    MenuPrincipal menuPrincipal;
     public MenuInicial() {
         initComponents();
     }
@@ -30,5 +31,10 @@ public class MenuInicial extends javax.swing.JPanel implements ComandoJanelaInte
     @Override
     public JPanel buscarPainel() {
         return this;
+    }
+
+    @Override
+    public void setMenuPrincipal(MenuPrincipal menuPrincipal) {
+        this.menuPrincipal = menuPrincipal;
     }
 }

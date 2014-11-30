@@ -13,9 +13,19 @@ public class Processador {
         comandos.put("principal", "view.MenuPrincipal");
         comandos.put("usuarios", "view.MenuUsuario");
         comandos.put("[GAP]", "view.MenuInicial");
+        
         comandos.put("[GAP, Administrador]", "view.MenuAdministrador");
+        comandos.put("[GAP, Administrador, Usuários]", "view.MenuUsuario");
+        comandos.put("[GAP, Administrador, Autorizar Compras]", "view.MenuAutorizaCompra");
+        
         comandos.put("[GAP, Vendas]", "view.MenuVenda");
+        comandos.put("[GAP, Vendas, Clientes]", "view.MenuCliente");
+        comandos.put("[GAP, Vendas, Vender Produto]", "view.MenuVenderProduto");
+        
         comandos.put("[GAP, Compras]", "view.MenuCompra");
+        comandos.put("[GAP, Compras, Estoque]", "view.MenuEstoque");
+        comandos.put("[GAP, Compras, Fornecedores]", "view.MenuFornecedor");
+        comandos.put("[GAP, Compras, Comprar Produto]", "view.MenuComprarProduto");
     }
 
     public static void alterarJanelaInterna(String cmd, MenuPrincipal menuPrincipal) {
@@ -24,7 +34,7 @@ public class Processador {
         try {
             Class classe = Class.forName(actionClass);
             ComandoJanelaInterna comando = (ComandoJanelaInterna) classe.newInstance();
-            
+            comando.setMenuPrincipal(menuPrincipal);
             menuPrincipal.getjDesktopPane1().setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
             menuPrincipal.getjDesktopPane1().removeAll();
             menuPrincipal.repaint();

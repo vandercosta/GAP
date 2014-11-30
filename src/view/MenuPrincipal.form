@@ -116,7 +116,7 @@
                 <Component class="javax.swing.JTree" name="jTree1">
                   <Properties>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code="GAP&#xa; Administrador&#xa; Vendas&#xa; Compras&#xa;&#xa;"/>
+                      <TreeModel code="GAP&#xa; Administrador&#xa;  Usu&#xe1;rios&#xa;  Autorizar Compras&#xa; Vendas&#xa;  Clientes&#xa;  Vender Produto&#xa; Compras&#xa;  Estoque&#xa;  Fornecedores&#xa;  Comprar Produto&#xa;&#xa;"/>
                     </Property>
                     <Property name="cellRenderer" type="javax.swing.tree.TreeCellRenderer" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="null"/>
