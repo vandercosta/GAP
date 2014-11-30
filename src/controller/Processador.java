@@ -1,0 +1,63 @@
+package controller;
+
+import java.awt.PopupMenu;
+import java.util.HashMap;
+import javax.swing.JDesktopPane;
+import view.MenuPrincipal;
+
+public class Processador {
+
+    private static final HashMap comandos = new HashMap();
+
+    static {
+        comandos.put("principal", "view.MenuPrincipal");
+        comandos.put("usuarios", "view.MenuUsuario");
+        comandos.put("[GAP]", "view.MenuInicial");
+        comandos.put("[GAP, Administrador]", "view.MenuAdministrador");
+        comandos.put("[GAP, Vendas]", "view.MenuVenda");
+        comandos.put("[GAP, Compras]", "view.MenuCompra");
+    }
+
+    public static void alterarJanelaInterna(String cmd, MenuPrincipal menuPrincipal) {
+        String actionClass = (String) comandos.get(cmd);
+        //Cria a instância da classe utilizando introspecção
+        try {
+            Class classe = Class.forName(actionClass);
+            ComandoJanelaInterna comando = (ComandoJanelaInterna) classe.newInstance();
+            
+            menuPrincipal.getjDesktopPane1().setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+            menuPrincipal.getjDesktopPane1().removeAll();
+            menuPrincipal.repaint();
+            comando.buscarPainel().setSize(menuPrincipal.getjDesktopPane1().getSize());
+            menuPrincipal.getjDesktopPane1().add(comando.buscarPainel());
+            
+
+            //comando.alterarJanelasInternas();
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (InstantiationException iex) {
+            System.out.println(iex);
+        } catch (IllegalAccessException iaex) {
+            System.out.println(iaex);
+        }
+
+    }
+
+    public static void abrirJanela(String cmd) {
+        String actionClass = (String) comandos.get(cmd);
+        //Cria a instância da classe utilizando introspecção
+        try {
+            Class classe = Class.forName(actionClass);
+            ComandoJanela comando = (ComandoJanela) classe.newInstance();
+            comando.abrirJanelas();
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (InstantiationException iex) {
+            System.out.println(iex);
+        } catch (IllegalAccessException iaex) {
+            System.out.println(iaex);
+        }
+
+    }
+
+}
