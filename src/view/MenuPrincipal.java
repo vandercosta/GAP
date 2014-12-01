@@ -4,7 +4,9 @@ package view;
 import controller.ComandoJanela;
 import controller.Processador;
 import javax.swing.JDesktopPane;
+import javax.swing.text.Position;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
@@ -38,10 +40,24 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("GAP");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Administrador");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Usuários");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Autorizar Compras");
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Vendas");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Vender Produto");
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Compras");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Estoque");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fornecedores");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Comprar Produto");
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jTree1.setCellRenderer(null);
@@ -74,7 +90,7 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGap(0, 619, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +148,9 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +197,18 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
     public void iniciarJTree() {
         renderer.setLeafIcon(renderer.getDefaultOpenIcon());  
         jTree1.setCellRenderer(renderer);
-        //permite selecionar apenas um dos itens da jTree1
-        jTree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jTree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);//permite selecionar apenas um dos itens da jTree1
     }
 
-    
+    //seleciona pasta da arvore conforme clique do botão
+    public void alteraJtree(String prefix1, String prefix2){
+        int startRow = 0;
+        TreePath path;
+        path = jTree1.getNextMatch(prefix1, startRow, Position.Bias.Forward);
+        jTree1.expandPath(path);
+        path = jTree1.getNextMatch(prefix2, startRow, Position.Bias.Forward);
+        jTree1.setSelectionRow(jTree1.getRowForPath(path));
+    }
         
     
 }

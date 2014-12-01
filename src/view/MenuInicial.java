@@ -1,10 +1,15 @@
 package view;
 
 import controller.ComandoJanelaInterna;
+import controller.ControleFuncionario;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import model.Funcionario;
+import model.dao.FuncionarioDAO;
 
 public class MenuInicial extends javax.swing.JPanel implements ComandoJanelaInterna {
 
+    MenuPrincipal menuPrincipal;
     public MenuInicial() {
         initComponents();
     }
@@ -30,5 +35,10 @@ public class MenuInicial extends javax.swing.JPanel implements ComandoJanelaInte
     @Override
     public JPanel buscarPainel() {
         return this;
+    }
+
+    @Override
+    public void setMenuPrincipal(MenuPrincipal menuPrincipal) {
+        this.menuPrincipal = menuPrincipal;
     }
 }

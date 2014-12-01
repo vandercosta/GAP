@@ -1,6 +1,7 @@
 
 package model.dao;
 
+import controller.ControleFuncionario;
 import java.util.ArrayList;
 import java.util.Iterator;
 import model.Funcionario;
@@ -14,6 +15,11 @@ public class FuncionarioDAO implements OperacoesDAO{
         if (obj instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) obj;
             funcionarios.add(funcionario);
+            
+            
+            String sql = "";
+            ControleFuncionario cont = new ControleFuncionario();
+            cont.adicionaFuncionario(funcionario, sql);
         }
     }
 
@@ -32,10 +38,10 @@ public class FuncionarioDAO implements OperacoesDAO{
     public void editar(Object obj) {
         if (obj instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) obj;
-            String chave = funcionario.getNome();
+            String chave = funcionario.getNomeUsuario();
             for (int i = 0; i < funcionarios.size(); i++) {
                 Funcionario achou = funcionarios.get(i);
-                if (chave.equals(achou.getNome())) {
+                if (chave.equals(achou.getNomeUsuario())) {
                     funcionarios.set(i, funcionario);
                 }
             }
@@ -44,26 +50,32 @@ public class FuncionarioDAO implements OperacoesDAO{
     }
 
     @Override
-    public ArrayList pequisar() {
-        return funcionarios;
+    public ArrayList pequisarTodos() {
+        String sql = "SELECT * FROM FUNCIONARIO";
+        ControleFuncionario cont = new ControleFuncionario();
+        return funcionarios = cont.listarFuncionario(sql);
+    }
+    
+    public ArrayList pesquisarUsuario(String usuario) {
+        
+        String sql = "SELECT * FROM FUNCIONARIO WHERE NOME_USUARIO LIKE '%"+usuario+"%' ";
+        ControleFuncionario cont = new ControleFuncionario();
+        return funcionarios = cont.listarFuncionario(sql);
     }
     
     public ArrayList pesquisar(Object obj) {
-        ArrayList<Funcionario> retorno = new ArrayList();
-        if (obj instanceof String) {
-            String chave = (String) obj;
-            Iterator<Funcionario> it = funcionarios.iterator();
-            while (it.hasNext()) {
-                Funcionario funcionario = it.next();
-                if (chave.equalsIgnoreCase(funcionario.getNome())) {
-                    retorno.add(funcionario);
-                }
-            }
-        }
-        return retorno;
+        return funcionarios;
     }
     
     
     
+   // public void finalizar(){
+        //GerenciadorArquivos.gravarDados("usuarios.dat", usuarios);
+    //}
+    
+    
+    
+    
+
     
 }

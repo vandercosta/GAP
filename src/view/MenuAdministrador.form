@@ -19,7 +19,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="btUsuarios" min="-2" pref="96" max="-2" attributes="0"/>
-              <EmptySpace pref="378" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btAutorizaCompra" min="-2" pref="159" max="-2" attributes="0"/>
+              <EmptySpace pref="209" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -27,7 +29,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="btUsuarios" min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btUsuarios" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="btAutorizaCompra" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="252" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -40,6 +45,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btUsuariosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btAutorizaCompra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Autorizar Compras"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAutorizaCompraActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
