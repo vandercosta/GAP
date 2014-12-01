@@ -2,6 +2,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
+import view.tabelas.TabelaVenda;
 
 public class Venda {
     private int idVenda;
@@ -115,6 +116,13 @@ public class Venda {
         return "Venda{" + "idVenda=" + idVenda + ", dataVenda=" + dataVenda + ", cliente=" + cliente + ", valorTotal=" + valorTotal + ", listaPedidos=" + listaPedidos + ", usuario=" + usuario + '}';
     }
 
-    
+    public String[] toArray() {
+        String[] vendaArray = new String[8];
+        vendaArray[TabelaVenda.INDICE_ID_VENDA] = String.valueOf(this.getIdVenda());
+        vendaArray[TabelaVenda.INDICE_CLIENTE] = String.valueOf(this.getCliente());
+        vendaArray[TabelaVenda.INDICE_VALORTOTAL] = String.valueOf(this.getValorTotal());
+        vendaArray[TabelaVenda.INDICE_USUARIO] = String.valueOf(this.getUsuario());
+        return vendaArray;
+    }
   
 }
