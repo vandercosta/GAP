@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Objects;
+import view.tabelas.TabelaProduto;
 
 public class Produto {
     private int idProduto;
@@ -10,6 +11,7 @@ public class Produto {
     private double valor;
     private int quantidade;
 
+    
     public Produto(int idProduto, String nome, String modelo, String categoria, double valor, int quantidade) {
         this.idProduto = idProduto;
         this.nome = nome;
@@ -115,7 +117,13 @@ public class Produto {
         return "Produto{" + "idProduto=" + idProduto + ", nome=" + nome + ", modelo=" + modelo + ", categoria=" + categoria + ", valor=" + valor + ", quantidade=" + quantidade + '}';
     }
     
-    
-    
-    
+    public String[] toArray() {
+        String[] produtoArray = new String[8];
+        produtoArray[TabelaProduto.INDICE_ID_PRODUTO] = String.valueOf(this.getIdProduto());
+        produtoArray[TabelaProduto.INDICE_NOME] = this.getNome();
+        produtoArray[TabelaProduto.INDICE_VALOR] = String.valueOf(this.getValor());
+        produtoArray[TabelaProduto.INDICE_QUANTIDADE] = String.valueOf(this.getQuantidade());
+        return produtoArray;
+    }
+     
 }

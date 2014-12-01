@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Objects;
+import view.tabelas.TabelaCliente;
 
 public class Cliente {
 
@@ -94,7 +95,14 @@ public class Cliente {
         return true;
     }
     
-    
+    public String[] toArray() {
+        String[] clienteArray = new String[8];
+        clienteArray[TabelaCliente.INDICE_ID_CLIENTE] = String.valueOf(this.getIdCliente());
+        clienteArray[TabelaCliente.INDICE_NOME] = this.getNome();
+        clienteArray[TabelaCliente.INDICE_CPF] = String.valueOf(this.getCpf());
+        clienteArray[TabelaCliente.INDICE_TELEFONE] = String.valueOf(this.getTelefone());
+        return clienteArray;
+    }
     
     
 }

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
+import view.tabelas.TabelaCompra;
 
 public class Compra {
 
@@ -117,5 +118,13 @@ public class Compra {
         return "Compra{" + "idCompra=" + idCompra + ", dataCompra=" + dataCompra + ", fornecedor=" + fornecedor + ", valorTotal=" + valorTotal + ", listaPedidos=" + listaPedidos + ", usuario=" + usuario + '}';
     }
     
+    public String[] toArray() {
+        String[] compraArray = new String[8];
+        compraArray[TabelaCompra.INDICE_ID_COMPRA] = String.valueOf(this.getIdCompra());
+        compraArray[TabelaCompra.INDICE_FORNECEDOR] = String.valueOf(this.getFornecedor());
+        compraArray[TabelaCompra.INDICE_VALORTOTAL] = String.valueOf(this.getValorTotal());
+        compraArray[TabelaCompra.INDICE_USUARIO] = String.valueOf(this.getUsuario());
+        return compraArray;
+    }
     
 }
