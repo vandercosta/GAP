@@ -10,6 +10,6 @@ public interface OperacoesDAO {
 
     void editar(Object obj);
 
-    ArrayList pequisar(); //Pesquisar tudo
+    ArrayList pequisarTodos(); //Pesquisar tudo
 
 }

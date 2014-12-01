@@ -1,7 +1,11 @@
 package view;
 
 import controller.ComandoJanelaInterna;
+import controller.ControleFuncionario;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import model.Funcionario;
+import model.dao.FuncionarioDAO;
 
 public class MenuInicial extends javax.swing.JPanel implements ComandoJanelaInterna {
 

@@ -4,11 +4,11 @@ package model;
 
 import java.util.Calendar;
 import java.util.Objects;
+import view.tabelas.TabelaFuncionario;
 
 public class Funcionario {
     
     private int idFuncionario;
-    private String nome;
     private String nomeUsuario;
     private long cpf;
     private String telefone;
@@ -17,9 +17,8 @@ public class Funcionario {
     private Calendar dataDemissao;
     private int perfil;
 
-    public Funcionario(int idFuncionario, String nome, String nomeUsuario, long cpf, String telefone, Calendar dataNascimento, Calendar dataEntrada, int perfil) {
+    public Funcionario(int idFuncionario, String nomeUsuario, long cpf, String telefone, Calendar dataNascimento, Calendar dataEntrada, int perfil) {
         this.idFuncionario = idFuncionario;
-        this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -27,6 +26,20 @@ public class Funcionario {
         this.dataEntrada = dataEntrada;
         this.perfil = perfil;
     }
+
+    public Funcionario(int idFuncionario, String nomeUsuario, long cpf, String telefone, Calendar dataNascimento, Calendar dataEntrada, Calendar dataDemissao, int perfil) {
+        this.idFuncionario = idFuncionario;
+        this.nomeUsuario = nomeUsuario;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.dataEntrada = dataEntrada;
+        this.dataDemissao = dataDemissao;
+        this.perfil = perfil;
+    }
+    
+    
+
 
     public int getIdFuncionario() {
         return idFuncionario;
@@ -36,13 +49,7 @@ public class Funcionario {
         this.idFuncionario = idFuncionario;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+   
 
     public String getNomeUsuario() {
         return nomeUsuario;
@@ -102,16 +109,15 @@ public class Funcionario {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.idFuncionario;
-        hash = 59 * hash + Objects.hashCode(this.nome);
-        hash = 59 * hash + Objects.hashCode(this.nomeUsuario);
-        hash = 59 * hash + (int) (this.cpf ^ (this.cpf >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.telefone);
-        hash = 59 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 59 * hash + Objects.hashCode(this.dataEntrada);
-        hash = 59 * hash + Objects.hashCode(this.dataDemissao);
-        hash = 59 * hash + this.perfil;
+        int hash = 3;
+        hash = 31 * hash + this.idFuncionario;
+        hash = 31 * hash + Objects.hashCode(this.nomeUsuario);
+        hash = 31 * hash + (int) (this.cpf ^ (this.cpf >>> 32));
+        hash = 31 * hash + Objects.hashCode(this.telefone);
+        hash = 31 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 31 * hash + Objects.hashCode(this.dataEntrada);
+        hash = 31 * hash + Objects.hashCode(this.dataDemissao);
+        hash = 31 * hash + this.perfil;
         return hash;
     }
 
@@ -125,9 +131,6 @@ public class Funcionario {
         }
         final Funcionario other = (Funcionario) obj;
         if (this.idFuncionario != other.idFuncionario) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.nomeUsuario, other.nomeUsuario)) {
@@ -153,10 +156,21 @@ public class Funcionario {
         }
         return true;
     }
+    
+    
 
     @Override
     public String toString() {
-        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", cpf=" + cpf + ", telefone=" + telefone + ", dataNascimento=" + dataNascimento + ", dataEntrada=" + dataEntrada + ", dataDemissao=" + dataDemissao + ", perfil=" + perfil + '}';
+        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", nomeUsuario=" + nomeUsuario + ", cpf=" + cpf + ", telefone=" + telefone + ", dataNascimento=" + dataNascimento + ", dataEntrada=" + dataEntrada + ", dataDemissao=" + dataDemissao + ", perfil=" + perfil + '}';
+    }
+
+    public String[] toArray() {
+        String[] funcionarioArray = new String[8];
+        funcionarioArray[TabelaFuncionario.INDICE_ID_FUNCIONARIO] = String.valueOf(this.getIdFuncionario());
+        funcionarioArray[TabelaFuncionario.INDICE_NOME_USUARIO] = this.getNomeUsuario();
+        funcionarioArray[TabelaFuncionario.INDICE_CPF] = String.valueOf(this.getCpf());
+        funcionarioArray[TabelaFuncionario.INDICE_TELEFONE] = String.valueOf(this.getTelefone());
+        return funcionarioArray;
     }
     
     
