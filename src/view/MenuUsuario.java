@@ -3,6 +3,7 @@ package view;
 
 import controller.ComandoJanelaInterna;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JPanel;
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
@@ -55,6 +56,11 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
         jButton2.setText("Excluir");
 
         jButton3.setText("Novo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuários");
 
@@ -131,10 +137,18 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
         }else{
             buscarPorNome(pequisa);
         }
-        
-        
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        Calendar dataNascimento = Calendar.getInstance();
+        Calendar dataEntrada = Calendar.getInstance();
+        Funcionario funcionario = new Funcionario("Almir", 123456789, "91904852", dataNascimento, dataEntrada, 1);
+        
+        this.funcionario.inserir(funcionario);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -169,9 +183,7 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
     
     public void buscarPorNome(String usuario){
         this.listaFuncionarios = this.funcionario.pesquisarUsuario(usuario);
-        
         TabelaFuncionario novaTabela = new TabelaFuncionario();
-        
         novaTabela.setFuncionario(this.listaFuncionarios);
         jtFuncionario.setModel(novaTabela);
     }

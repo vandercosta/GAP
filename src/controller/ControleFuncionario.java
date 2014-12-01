@@ -71,6 +71,14 @@ public class ControleFuncionario {
         
         try{
             PreparedStatement ps = conexao.prepareStatement(consulta);
+            ps.setString(1, "07-NOV-13");
+            ps.setInt(2, funcionario.getPerfil());
+            ps.setLong(3, funcionario.getCpf());
+            ps.setString(4, "08-NOV-13");
+            ps.setString(5, funcionario.getTelefone());
+            ps.setString(6, funcionario.getNomeUsuario());
+            
+            ps.execute();
             
         }catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Erro ao inserir funcionario"+" detalhes: "+ex.getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);

@@ -37,6 +37,16 @@ public class Funcionario {
         this.dataDemissao = dataDemissao;
         this.perfil = perfil;
     }
+
+    public Funcionario(String nomeUsuario, long cpf, String telefone, Calendar dataNascimento, Calendar dataEntrada, int perfil) {
+        this.nomeUsuario = nomeUsuario;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.dataEntrada = dataEntrada;
+        this.perfil = perfil;
+    }
+    
     
     
 
@@ -173,6 +183,5 @@ public class Funcionario {
         return funcionarioArray;
     }
     
-    
-    
+
 }

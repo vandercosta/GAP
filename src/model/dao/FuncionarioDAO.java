@@ -3,7 +3,6 @@ package model.dao;
 
 import controller.ControleFuncionario;
 import java.util.ArrayList;
-import java.util.Iterator;
 import model.Funcionario;
 
 public class FuncionarioDAO implements OperacoesDAO{
@@ -14,10 +13,12 @@ public class FuncionarioDAO implements OperacoesDAO{
     public void inserir(Object obj) {
         if (obj instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) obj;
-            funcionarios.add(funcionario);
+            //funcionarios.add(funcionario);
             
             
-            String sql = "";
+            String sql = "insert into funcionario("
+                    + "id_funcionario, data_entrada, perfil, cpf_funcionario, data_nascimento, telefone_funcionario, nome_usuario, id_especialidade)"
+                    + " values  (s_funcionario.nextval,?,?,?,?,?,?,1);";
             ControleFuncionario cont = new ControleFuncionario();
             cont.adicionaFuncionario(funcionario, sql);
         }
