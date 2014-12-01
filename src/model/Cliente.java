@@ -96,7 +96,7 @@ public class Cliente {
     }
     
     public String[] toArray() {
-        String[] clienteArray = new String[8];
+        String[] clienteArray = new String[4];
         clienteArray[TabelaCliente.INDICE_ID_CLIENTE] = String.valueOf(this.getIdCliente());
         clienteArray[TabelaCliente.INDICE_NOME] = this.getNome();
         clienteArray[TabelaCliente.INDICE_CPF] = String.valueOf(this.getCpf());

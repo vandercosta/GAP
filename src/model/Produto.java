@@ -118,7 +118,7 @@ public class Produto {
     }
     
     public String[] toArray() {
-        String[] produtoArray = new String[8];
+        String[] produtoArray = new String[4];
         produtoArray[TabelaProduto.INDICE_ID_PRODUTO] = String.valueOf(this.getIdProduto());
         produtoArray[TabelaProduto.INDICE_NOME] = this.getNome();
         produtoArray[TabelaProduto.INDICE_VALOR] = String.valueOf(this.getValor());

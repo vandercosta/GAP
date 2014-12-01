@@ -90,7 +90,7 @@ public class Fornecedor {
 
     
     public String[] toArray() {
-        String[] fornecedorArray = new String[8];
+        String[] fornecedorArray = new String[4];
         fornecedorArray[TabelaFornecedor.INDICE_ID_FORNECEDOR] = String.valueOf(this.getIdFornecedor());
         fornecedorArray[TabelaFornecedor.INDICE_NOME] = this.getNome();
         fornecedorArray[TabelaFornecedor.INDICE_CNPJ] = String.valueOf(this.getCnpj());

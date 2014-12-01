@@ -63,7 +63,7 @@ public class Pedido {
     }
     
     public String[] toArray() {
-        String[] pedidoArray = new String[8];
+        String[] pedidoArray = new String[2];
         pedidoArray[TabelaPedido.INDICE_PRODUTO] = String.valueOf(this.getProduto());
         pedidoArray[TabelaPedido.INDICE_QUANTIDADE] = String.valueOf(this.getQuantidade());
         return pedidoArray;

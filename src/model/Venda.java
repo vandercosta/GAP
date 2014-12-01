@@ -117,7 +117,7 @@ public class Venda {
     }
 
     public String[] toArray() {
-        String[] vendaArray = new String[8];
+        String[] vendaArray = new String[4];
         vendaArray[TabelaVenda.INDICE_ID_VENDA] = String.valueOf(this.getIdVenda());
         vendaArray[TabelaVenda.INDICE_CLIENTE] = String.valueOf(this.getCliente());
         vendaArray[TabelaVenda.INDICE_VALORTOTAL] = String.valueOf(this.getValorTotal());

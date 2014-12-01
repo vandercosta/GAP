@@ -119,7 +119,7 @@ public class Compra {
     }
     
     public String[] toArray() {
-        String[] compraArray = new String[8];
+        String[] compraArray = new String[4];
         compraArray[TabelaCompra.INDICE_ID_COMPRA] = String.valueOf(this.getIdCompra());
         compraArray[TabelaCompra.INDICE_FORNECEDOR] = String.valueOf(this.getFornecedor());
         compraArray[TabelaCompra.INDICE_VALORTOTAL] = String.valueOf(this.getValorTotal());

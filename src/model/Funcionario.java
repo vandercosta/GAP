@@ -175,7 +175,7 @@ public class Funcionario {
     }
 
     public String[] toArray() {
-        String[] funcionarioArray = new String[8];
+        String[] funcionarioArray = new String[4];
         funcionarioArray[TabelaFuncionario.INDICE_ID_FUNCIONARIO] = String.valueOf(this.getIdFuncionario());
         funcionarioArray[TabelaFuncionario.INDICE_NOME_USUARIO] = this.getNomeUsuario();
         funcionarioArray[TabelaFuncionario.INDICE_CPF] = String.valueOf(this.getCpf());

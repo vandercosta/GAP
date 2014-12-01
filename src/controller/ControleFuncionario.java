@@ -71,12 +71,15 @@ public class ControleFuncionario {
         
         try{
             PreparedStatement ps = conexao.prepareStatement(consulta);
-            ps.setString(1, "07-NOV-13");
-            ps.setInt(2, funcionario.getPerfil());
-            ps.setLong(3, funcionario.getCpf());
-            ps.setString(4, "08-NOV-13");
-            ps.setString(5, funcionario.getTelefone());
-            ps.setString(6, funcionario.getNomeUsuario());
+            //ps.setString(1, "s_funcionario.nextval");
+            //ps.setString(2, "07-NOV-13");
+            //ps.setInt(3, funcionario.getPerfil());
+            //ps.setLong(4, funcionario.getCpf());
+            //ps.setString(5, "08-NOV-13");
+            //ps.setString(6, funcionario.getTelefone());
+            //ps.setString(7, funcionario.getNomeUsuario());
+            //ps.setInt(8, 1);
+            
             
             ps.execute();
             
