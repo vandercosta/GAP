@@ -14,14 +14,14 @@ import model.Funcionario;
 import model.dao.FuncionarioDAO;
 import view.tabelas.TabelaFuncionario;
 
-public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInterna {
+public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanelaInterna {
 
     ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
     FuncionarioDAO funcionarioDao = new FuncionarioDAO();
     MenuPrincipal menuPrincipal;
     TabelaFuncionario tabela = new TabelaFuncionario();
 
-    public MenuUsuario() {
+    public MenuFuncionario() {
         initComponents();
 
         jtFuncionario.setModel(this.tabela);

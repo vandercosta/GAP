@@ -225,7 +225,7 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
             this.funcionario.inserir(funcionario);
             dispose(); 
         } catch (ParseException ex) {
-            Logger.getLogger(MenuUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
