@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.PopupMenu;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JDesktopPane;
 import view.MenuPrincipal;
@@ -12,6 +13,7 @@ public class Processador {
     static {
         comandos.put("principal", "view.MenuPrincipal");
         comandos.put("usuarios", "view.MenuUsuario");
+        
         comandos.put("[GAP]", "view.MenuInicial");
         
         comandos.put("[GAP, Administrador]", "view.MenuAdministrador");
@@ -26,6 +28,10 @@ public class Processador {
         comandos.put("[GAP, Compras, Estoque]", "view.MenuEstoque");
         comandos.put("[GAP, Compras, Fornecedores]", "view.MenuFornecedor");
         comandos.put("[GAP, Compras, Comprar Produto]", "view.MenuComprarProduto");
+        
+        
+        comandos.put("novoFuncionario", "view.NovoFuncionario");
+        
     }
 
     public static void alterarJanelaInterna(String cmd, MenuPrincipal menuPrincipal) {
@@ -41,8 +47,6 @@ public class Processador {
             comando.buscarPainel().setSize(menuPrincipal.getjDesktopPane1().getSize());
             menuPrincipal.getjDesktopPane1().add(comando.buscarPainel());
             
-
-            //comando.alterarJanelasInternas();
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         } catch (InstantiationException iex) {
@@ -67,7 +71,23 @@ public class Processador {
         } catch (IllegalAccessException iaex) {
             System.out.println(iaex);
         }
-
+    }
+    
+    
+    public static void abrirNovo(String cmd) {
+        String actionClass = (String) comandos.get(cmd);
+        //Cria a instância da classe utilizando introspecção
+        try {
+            Class classe = Class.forName(actionClass);
+            ComandoNovo comando = (ComandoNovo) classe.newInstance();
+            comando.abrirNovo();
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (InstantiationException iex) {
+            System.out.println(iex);
+        } catch (IllegalAccessException iaex) {
+            System.out.println(iaex);
+        }
     }
 
 }

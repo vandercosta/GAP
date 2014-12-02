@@ -13,17 +13,10 @@ public class FuncionarioDAO implements OperacoesDAO{
     public void inserir(Object obj) {
         if (obj instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) obj;
-            //funcionarios.add(funcionario);
-            
-            
-//            String sql = "insert into funcionario("
-//                    + "id_funcionario, data_entrada, perfil, cpf_funcionario, data_nascimento, telefone_funcionario, nome_usuario, id_especialidade)"
-//                    + " values  (?,?,?,?,?,?,?,?);";
-            
             String sql = "insert into funcionario("
                     + "id_funcionario, data_entrada, data_demissao, perfil, cpf_funcionario,"
                     + " data_nascimento, telefone_funcionario, nome_usuario, id_especialidade)"
-                    + " values (s_funcionario.nextval,'07-SEP-14',null,3,03767722247,'18-FEB-72',5177777777,'Elvis2',1)";
+                    + " values (s_funcionario.nextval,?,?,?,?,?,?,?,?)";
             
             ControleFuncionario cont = new ControleFuncionario();
             cont.adicionaFuncionario(funcionario, sql);

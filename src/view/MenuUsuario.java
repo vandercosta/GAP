@@ -2,8 +2,13 @@
 package view;
 
 import controller.ComandoJanelaInterna;
+import controller.Processador;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
@@ -11,13 +16,14 @@ import view.tabelas.TabelaFuncionario;
 
 
 public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInterna{
-
+    
     ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
     FuncionarioDAO funcionario = new FuncionarioDAO();
     MenuPrincipal menuPrincipal;
     public MenuUsuario() {
         initComponents();
-        buscarTodos();
+        
+        jtFuncionario.setAutoCreateRowSorter(true);
     }
     
     public final void limparTabela(){
@@ -142,11 +148,9 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        Calendar dataNascimento = Calendar.getInstance();
-        Calendar dataEntrada = Calendar.getInstance();
-        Funcionario funcionario = new Funcionario("Almir", 123456789, "91904852", dataNascimento, dataEntrada, 1);
+        Processador.abrirNovo("novoFuncionario");
         
-        this.funcionario.inserir(funcionario);
+
         
     }//GEN-LAST:event_jButton3ActionPerformed
 

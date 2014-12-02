@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -66,21 +67,19 @@ public class ControleFuncionario {
     
     
     public void adicionaFuncionario(Funcionario funcionario, String consulta){
-        
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
         Connection conexao = conector.getConnection();
         
         try{
             PreparedStatement ps = conexao.prepareStatement(consulta);
-            //ps.setString(1, "s_funcionario.nextval");
-            //ps.setString(2, "07-NOV-13");
-            //ps.setInt(3, funcionario.getPerfil());
-            //ps.setLong(4, funcionario.getCpf());
-            //ps.setString(5, "08-NOV-13");
-            //ps.setString(6, funcionario.getTelefone());
-            //ps.setString(7, funcionario.getNomeUsuario());
-            //ps.setInt(8, 1);
-            
-            
+            ps.setString(1, formatoData.format(funcionario.getDataEntrada().getTime()));
+            ps.setString(2, null);
+            ps.setInt(3, funcionario.getPerfil());
+            ps.setLong(4, funcionario.getCpf());
+            ps.setString(5, formatoData.format(funcionario.getDataNascimento().getTime()));
+            ps.setString(6, funcionario.getTelefone());
+            ps.setString(7,funcionario.getNomeUsuario());
+            ps.setInt(8,1); //insere especialidade
             ps.execute();
             
         }catch (SQLException ex){
