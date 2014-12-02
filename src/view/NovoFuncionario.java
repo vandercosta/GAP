@@ -220,7 +220,7 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
 
             Funcionario funcionario = new Funcionario(nome, cpf, telefone, cNascimento, cEntrada, perfil);
 
-            //String retorno = formatoData.format(funcionario.getDataEntrada().getTime());
+            //String retorno = formatoData.format(funcionarioDao.getDataEntrada().getTime());
 
             this.funcionario.inserir(funcionario);
             dispose(); 

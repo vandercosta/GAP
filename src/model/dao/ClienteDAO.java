@@ -12,7 +12,7 @@ public class ClienteDAO implements OperacoesDAO{
     }
 
     @Override
-    public boolean excluir(Object obj) {
+    public void excluir(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 

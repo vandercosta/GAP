@@ -13,10 +13,11 @@ import javax.swing.JOptionPane;
 import model.Funcionario;
 
 
-//fazer para o banco, copiar do discoteca GerenciadoArquivos
 public class ControleFuncionario {
     
+    //efetua conexão, nunca muda
     ConectorBanco conector = new ConectorBanco();
+    
     SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
     public ArrayList<Funcionario> listarFuncionario(String consulta){
         
@@ -66,7 +67,7 @@ public class ControleFuncionario {
     }
     
     
-    public void adicionaFuncionario(Funcionario funcionario, String consulta){
+    public void adicionaFuncionario(String consulta, Funcionario funcionario){
         
         Connection conexao = conector.getConnection();
         
@@ -90,6 +91,7 @@ public class ControleFuncionario {
     
     public void editarFuncionario(String consulta, Funcionario funcionario){
         
+        //efetua conexão, nunca muda
         Connection conexao = conector.getConnection();
         
         try{
@@ -115,7 +117,23 @@ public class ControleFuncionario {
         }catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Erro ao editar funcionario"+" detalhes: "+ex.getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);
         }
-    
     }
+    
+    public void excluirFuncionario(String consulta, Funcionario funcionario){
+        
+        //efetua conexão, nunca muda
+        Connection conexao = conector.getConnection();
+        
+        try{
+            PreparedStatement ps = conexao.prepareStatement(consulta);
+            ps.setInt(1, funcionario.getIdFuncionario());
+            ps.execute(); 
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro na exclusão do funcionario"+" detalhes: "+ex.getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
+    
     
 }

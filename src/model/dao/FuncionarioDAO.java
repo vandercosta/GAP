@@ -18,19 +18,21 @@ public class FuncionarioDAO implements OperacoesDAO {
                     + " values (s_funcionario.nextval,?,?,?,?,?,?,?,?)";
 
             ControleFuncionario cont = new ControleFuncionario();
-            cont.adicionaFuncionario(funcionario, sql);
+            cont.adicionaFuncionario(sql, funcionario);
         }
     }
 
     @Override
-    public boolean excluir(Object obj) {
-        boolean achou = false;
-        ArrayList pesquisa = pesquisar(obj);
-        if (pesquisa.size() != 0) { //Encontrou alguma coisa
-            funcionarios.removeAll(pesquisa);
-            achou = true;
+    public void excluir(Object obj) {
+        
+        if (obj instanceof Funcionario) {
+            Funcionario funcionario = (Funcionario) obj;
+            String sql = "DELETE FROM FUNCIONARIO WHERE id_funcionario = ?";
+
+            ControleFuncionario cont = new ControleFuncionario();
+            cont.excluirFuncionario(sql,funcionario);
         }
-        return achou;
+        
     }
 
     @Override
@@ -60,9 +62,7 @@ public class FuncionarioDAO implements OperacoesDAO {
         return funcionarios = cont.listarFuncionario(sql);
     }
 
-    public ArrayList pesquisar(Object obj) {
-        return funcionarios;
-    }
+    
 
    // public void finalizar(){
     //GerenciadorArquivos.gravarDados("usuarios.dat", usuarios);

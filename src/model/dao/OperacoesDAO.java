@@ -6,7 +6,7 @@ public interface OperacoesDAO {
 
     void inserir(Object obj);
 
-    boolean excluir(Object obj);
+    void excluir(Object obj);
 
     void editar(Object obj);
 
