@@ -17,7 +17,7 @@ import model.Funcionario;
 public class ControleFuncionario {
     
     ConectorBanco conector = new ConectorBanco();
-    
+    SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
     public ArrayList<Funcionario> listarFuncionario(String consulta){
         
         Connection conexao = conector.getConnection();
@@ -67,16 +67,16 @@ public class ControleFuncionario {
     
     
     public void adicionaFuncionario(Funcionario funcionario, String consulta){
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
+        
         Connection conexao = conector.getConnection();
         
         try{
             PreparedStatement ps = conexao.prepareStatement(consulta);
-            ps.setString(1, formatoData.format(funcionario.getDataEntrada().getTime()));
+            ps.setString(1, this.formatoData.format(funcionario.getDataEntrada().getTime()));
             ps.setString(2, null);
             ps.setInt(3, funcionario.getPerfil());
             ps.setLong(4, funcionario.getCpf());
-            ps.setString(5, formatoData.format(funcionario.getDataNascimento().getTime()));
+            ps.setString(5, this.formatoData.format(funcionario.getDataNascimento().getTime()));
             ps.setString(6, funcionario.getTelefone());
             ps.setString(7,funcionario.getNomeUsuario());
             ps.setInt(8,1); //insere especialidade
@@ -88,6 +88,34 @@ public class ControleFuncionario {
         
     }
     
+    public void editarFuncionario(String consulta, Funcionario funcionario){
+        
+        Connection conexao = conector.getConnection();
+        
+        try{
+            PreparedStatement ps = conexao.prepareStatement(consulta);
+            
+            ps.setString(1,funcionario.getNomeUsuario());
+            ps.setLong(2, funcionario.getCpf());
+            ps.setString(3, formatoData.format(funcionario.getDataNascimento().getTime()));
+            ps.setString(4, funcionario.getTelefone());
+            ps.setString(5, formatoData.format(funcionario.getDataEntrada().getTime()));
+            ps.setInt(6, funcionario.getPerfil());
+            
+            if(funcionario.getDataDemissao() ==null){
+                ps.setString(7, null);
+            }else{
+                ps.setString(7, formatoData.format(funcionario.getDataDemissao().getTime()));
+            }
+            
+            ps.setInt(8, funcionario.getIdFuncionario());
+            
+            ps.executeUpdate();
+            
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao editar funcionario"+" detalhes: "+ex.getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);
+        }
     
+    }
     
 }

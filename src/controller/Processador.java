@@ -28,9 +28,9 @@ public class Processador {
         comandos.put("[GAP, Compras, Estoque]", "view.MenuEstoque");
         comandos.put("[GAP, Compras, Fornecedores]", "view.MenuFornecedor");
         comandos.put("[GAP, Compras, Comprar Produto]", "view.MenuComprarProduto");
-        
-        
+       
         comandos.put("novoFuncionario", "view.NovoFuncionario");
+        comandos.put("editarFuncionario", "view.EditorFuncionario");
         
     }
 
@@ -74,13 +74,13 @@ public class Processador {
     }
     
     
-    public static void abrirNovo(String cmd) {
+    public static void abrirEditar(String cmd, Object obj) {
         String actionClass = (String) comandos.get(cmd);
         //Cria a instância da classe utilizando introspecção
         try {
             Class classe = Class.forName(actionClass);
-            ComandoNovo comando = (ComandoNovo) classe.newInstance();
-            comando.abrirNovo();
+            ComandoJanela comando = (ComandoJanela) classe.newInstance();
+            comando.abrirJanelas(obj);
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         } catch (InstantiationException iex) {
@@ -89,5 +89,5 @@ public class Processador {
             System.out.println(iaex);
         }
     }
-
+    
 }

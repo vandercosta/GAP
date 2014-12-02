@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.ComandoJanela;
@@ -10,15 +9,16 @@ import java.util.logging.Logger;
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
 
+public class EditorFuncionario extends javax.swing.JFrame implements ComandoJanela {
 
-public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela{
+    SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
+    FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+    Funcionario funcionarioEditado;
 
-   FuncionarioDAO funcionario = new FuncionarioDAO();
-    public NovoFuncionario() {
+    public EditorFuncionario() {
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,6 +30,8 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         comboPerfil = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
+        textDemissao = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         textNome = new javax.swing.JTextField();
         textCpf = new javax.swing.JTextField();
@@ -53,6 +55,8 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
 
         comboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Administrador", "Vendedor", "Almoxarife" }));
 
+        jLabel8.setText("Demissão");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -70,6 +74,12 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
                     .addComponent(textEntrada)
                     .addComponent(comboPerfil, 0, 149, Short.MAX_VALUE))
                 .addGap(0, 23, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(textDemissao)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,6 +92,10 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(textDemissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -142,7 +156,7 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Cadastrar");
+        jButton1.setText("Alterar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -190,44 +204,52 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
-        String nome = textNome.getText();
-        long cpf = Long.valueOf(textCpf.getText());
-        
+
+        funcionarioEditado.setNomeUsuario(textNome.getText());
+        funcionarioEditado.setCpf(Long.valueOf(textCpf.getText()));
+
         String dataNascimento = textNascimento.getText();
-        Calendar cNascimento = Calendar.getInstance();
-        
-        String telefone = textTelefone.getText();
-        
+        Calendar nascimento = Calendar.getInstance();
+
         String dataEntrada = textEntrada.getText();
-        Calendar cEntrada = Calendar.getInstance();
-        
-        int perfil = comboPerfil.getSelectedIndex();
-        
+        Calendar entrada = Calendar.getInstance();
+
+        String dataDemissao = textDemissao.getText();
+        Calendar demissao = Calendar.getInstance();
+
         try {
-            cNascimento.setTime(formatoData.parse(dataNascimento));
-            cEntrada.setTime(formatoData.parse(dataEntrada));
+            nascimento.setTime(formatoData.parse(dataNascimento));
+            funcionarioEditado.setDataNascimento(nascimento);
 
-            Funcionario funcionario = new Funcionario(nome, cpf, telefone, cNascimento, cEntrada, perfil);
+            entrada.setTime(formatoData.parse(dataEntrada));
+            funcionarioEditado.setDataEntrada(entrada);
 
-            //String retorno = formatoData.format(funcionario.getDataEntrada().getTime());
+            if (dataDemissao.equals("")) {
+                funcionarioEditado.setDataDemissao(null);
+            } else {
+                demissao.setTime(formatoData.parse(dataDemissao));
+                funcionarioEditado.setDataDemissao(demissao);
+            }
 
-            this.funcionario.inserir(funcionario);
-            dispose(); 
         } catch (ParseException ex) {
-            Logger.getLogger(MenuUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditorFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        funcionarioEditado.setTelefone(textTelefone.getText());
+        funcionarioEditado.setPerfil(comboPerfil.getSelectedIndex());
+
+        this.funcionarioDao.editar(funcionarioEditado);
+        dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboPerfil;
@@ -239,27 +261,40 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField textCpf;
+    private javax.swing.JTextField textDemissao;
     private javax.swing.JTextField textEntrada;
     private javax.swing.JTextField textNascimento;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
 
-   
-
     @Override
     public void abrirJanelas() {
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
     @Override
     public void abrirJanelas(Object obj) {
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
+
+        this.funcionarioEditado = (Funcionario) obj;
+        textNome.setText(this.funcionarioEditado.getNomeUsuario());
+        textCpf.setText(String.valueOf(this.funcionarioEditado.getCpf()));
+        textNascimento.setText(this.formatoData.format(this.funcionarioEditado.getDataNascimento().getTime()));
+        textTelefone.setText(this.funcionarioEditado.getTelefone());
+        textEntrada.setText(this.formatoData.format(this.funcionarioEditado.getDataEntrada().getTime()));
+
+        comboPerfil.setSelectedIndex(this.funcionarioEditado.getPerfil());
+
+        if (this.funcionarioEditado.getDataDemissao() != null) {
+            textDemissao.setText(this.formatoData.format(this.funcionarioEditado.getDataDemissao().getTime()));
+        }
         this.setVisible(true);
     }
 }

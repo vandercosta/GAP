@@ -211,6 +211,11 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
         path = jTree1.getNextMatch(prefix2, startRow, Position.Bias.Forward);
         jTree1.setSelectionRow(jTree1.getRowForPath(path));
     }
+
+    @Override
+    public void abrirJanelas(Object obj) {
+        
+    }
         
     
 }
