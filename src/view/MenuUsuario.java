@@ -1,30 +1,39 @@
-
 package view;
 
 import controller.ComandoJanelaInterna;
+import controller.Processador;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
 import view.tabelas.TabelaFuncionario;
 
-
-public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInterna{
+public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInterna {
 
     ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
-    FuncionarioDAO funcionario = new FuncionarioDAO();
+    FuncionarioDAO funcionarioDao = new FuncionarioDAO();
     MenuPrincipal menuPrincipal;
+    TabelaFuncionario tabela = new TabelaFuncionario();
+
     public MenuUsuario() {
         initComponents();
-        buscarTodos();
+
+        jtFuncionario.setModel(this.tabela);
+        jtFuncionario.setAutoCreateRowSorter(true);
     }
-    
-    public final void limparTabela(){
-        TabelaFuncionario novaTabela = new TabelaFuncionario();
-        jtFuncionario.setModel(novaTabela);
+
+    public final void limparTabela() {
+
+        jtFuncionario.setModel(this.tabela);
         //jButtonSelecionar.setVisible(false);
         //jtInconsistencia.setAutoCreateRowSorter(true);
-    } 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,10 +60,25 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
         jScrollPane1.setViewportView(jtFuncionario);
 
         jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Novo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuários");
 
@@ -126,15 +150,65 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String pequisa = textUsuario.getText();
-        if(pequisa.equals("")){
+        if (pequisa.equals("")) {
             buscarTodos();
-        }else{
+        } else {
             buscarPorNome(pequisa);
         }
-        
-        
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        Processador.abrirJanela("novoFuncionario");
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        Funcionario funcionarioSelecionado;
+
+        if (jtFuncionario.getSelectedRow() != -1) {
+            String id = String.valueOf(jtFuncionario.getModel().getValueAt(jtFuncionario.getSelectedRow(), 0));
+            int idFuncionario = Integer.valueOf(id);
+            for (int i = 0; i < this.listaFuncionarios.size(); i++) {
+                if (this.listaFuncionarios.get(i).getIdFuncionario() == idFuncionario) {
+                    funcionarioSelecionado = this.listaFuncionarios.get(i);
+                    Processador.abrirEditar("editarFuncionario", funcionarioSelecionado);
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecionae uma linha", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja Excluir:", "AVISO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+            Funcionario funcionarioSelecionado;
+            if (jtFuncionario.getSelectedRow() != -1) {
+                String id = String.valueOf(jtFuncionario.getModel().getValueAt(jtFuncionario.getSelectedRow(), 0));
+                int idFuncionario = Integer.valueOf(id);
+                for (int i = 0; i < this.listaFuncionarios.size(); i++) {
+                    if (this.listaFuncionarios.get(i).getIdFuncionario() == idFuncionario) {
+                        funcionarioSelecionado = this.listaFuncionarios.get(i);
+                        int teste = jtFuncionario.getSelectedRow();
+                        this.tabela.removeFuncionarios(teste);
+                        funcionarioDao.excluir(funcionarioSelecionado);
+                        break;
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecionae uma linha", "Alerta", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -157,24 +231,21 @@ public class MenuUsuario extends javax.swing.JPanel implements ComandoJanelaInte
     public void setMenuPrincipal(MenuPrincipal menuPrincipal) {
         this.menuPrincipal = menuPrincipal;
     }
-    
-    public void buscarTodos(){
-        
-        this.listaFuncionarios = this.funcionario.pequisarTodos();
-        TabelaFuncionario novaTabela = new TabelaFuncionario();
-        novaTabela.setFuncionario(this.listaFuncionarios);
-        jtFuncionario.setModel(novaTabela);
+
+    public void buscarTodos() {
+
+        this.listaFuncionarios = this.funcionarioDao.pequisarTodos();
+
+        this.tabela.setFuncionario(this.listaFuncionarios);
+        jtFuncionario.setModel(tabela);
         //System.out.println(listaFuncionarios.get(0).getDataEntrada().getTime());
     }
-    
-    public void buscarPorNome(String usuario){
-        this.listaFuncionarios = this.funcionario.pesquisarUsuario(usuario);
-        
-        TabelaFuncionario novaTabela = new TabelaFuncionario();
-        
-        novaTabela.setFuncionario(this.listaFuncionarios);
-        jtFuncionario.setModel(novaTabela);
+
+    public void buscarPorNome(String usuario) {
+        this.listaFuncionarios = this.funcionarioDao.pesquisarUsuario(usuario);
+
+        this.tabela.setFuncionario(this.listaFuncionarios);
+        jtFuncionario.setModel(this.tabela);
     }
-    
-    
+
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Objects;
+import view.tabelas.TabelaFornecedor;
 
 public class Fornecedor {
 
@@ -88,6 +89,14 @@ public class Fornecedor {
     }
 
     
+    public String[] toArray() {
+        String[] fornecedorArray = new String[4];
+        fornecedorArray[TabelaFornecedor.INDICE_ID_FORNECEDOR] = String.valueOf(this.getIdFornecedor());
+        fornecedorArray[TabelaFornecedor.INDICE_NOME] = this.getNome();
+        fornecedorArray[TabelaFornecedor.INDICE_CNPJ] = String.valueOf(this.getCnpj());
+        fornecedorArray[TabelaFornecedor.INDICE_TELEFONE] = String.valueOf(this.getTelefone());
+        return fornecedorArray;
+    }
     
    
     

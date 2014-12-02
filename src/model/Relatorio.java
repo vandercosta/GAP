@@ -3,6 +3,7 @@
 package model;
 
 import java.util.Calendar;
+import view.tabelas.TabelaRelatorio;
 
 
 public class Relatorio {
@@ -50,7 +51,13 @@ public class Relatorio {
         this.dataEmissao = dataEmissao;
     }
     
-    
+    public String[] toArray() {
+        String[] relatorioArray = new String[3];
+        relatorioArray[TabelaRelatorio.INDICE_CLIENTE] = String.valueOf(this.getCliente());
+        relatorioArray[TabelaRelatorio.INDICE_PRODUTO] = String.valueOf(this.getProduto());
+        relatorioArray[TabelaRelatorio.INDICE_FORNECEDOR] = String.valueOf(this.getFornecedor());
+        return relatorioArray;
+    }
     
     
     

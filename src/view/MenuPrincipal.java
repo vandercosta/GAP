@@ -17,6 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
     public MenuPrincipal() {
         initComponents();
         iniciarJTree();
+        this.setLocationRelativeTo(null); 
     }
     DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 
@@ -35,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -208,6 +210,11 @@ public class MenuPrincipal extends javax.swing.JFrame implements ComandoJanela{
         jTree1.expandPath(path);
         path = jTree1.getNextMatch(prefix2, startRow, Position.Bias.Forward);
         jTree1.setSelectionRow(jTree1.getRowForPath(path));
+    }
+
+    @Override
+    public void abrirJanelas(Object obj) {
+        
     }
         
     

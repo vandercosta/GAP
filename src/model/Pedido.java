@@ -3,6 +3,7 @@
 package model;
 
 import java.util.Objects;
+import view.tabelas.TabelaPedido;
 
 
 public class Pedido {
@@ -61,5 +62,11 @@ public class Pedido {
         return "Pedido{" + "produto=" + produto + ", quantidade=" + quantidade + '}';
     }
     
+    public String[] toArray() {
+        String[] pedidoArray = new String[2];
+        pedidoArray[TabelaPedido.INDICE_PRODUTO] = String.valueOf(this.getProduto());
+        pedidoArray[TabelaPedido.INDICE_QUANTIDADE] = String.valueOf(this.getQuantidade());
+        return pedidoArray;
+    }
     
 }

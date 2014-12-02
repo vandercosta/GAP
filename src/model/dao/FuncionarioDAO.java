@@ -1,52 +1,52 @@
-
 package model.dao;
 
 import controller.ControleFuncionario;
 import java.util.ArrayList;
-import java.util.Iterator;
 import model.Funcionario;
 
-public class FuncionarioDAO implements OperacoesDAO{
-    
+public class FuncionarioDAO implements OperacoesDAO {
+
     private ArrayList<Funcionario> funcionarios = new ArrayList();
 
     @Override
     public void inserir(Object obj) {
         if (obj instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) obj;
-            funcionarios.add(funcionario);
-            
-            
-            String sql = "";
+            String sql = "insert into funcionario("
+                    + "id_funcionario, data_entrada, data_demissao, perfil, cpf_funcionario,"
+                    + " data_nascimento, telefone_funcionario, nome_usuario, id_especialidade)"
+                    + " values (s_funcionario.nextval,?,?,?,?,?,?,?,?)";
+
             ControleFuncionario cont = new ControleFuncionario();
-            cont.adicionaFuncionario(funcionario, sql);
+            cont.adicionaFuncionario(sql, funcionario);
         }
     }
 
     @Override
-    public boolean excluir(Object obj) {
-        boolean achou = false;
-        ArrayList pesquisa = pesquisar(obj);
-        if (pesquisa.size() != 0) { //Encontrou alguma coisa
-            funcionarios.removeAll(pesquisa);
-            achou = true;
+    public void excluir(Object obj) {
+        
+        if (obj instanceof Funcionario) {
+            Funcionario funcionario = (Funcionario) obj;
+            String sql = "DELETE FROM FUNCIONARIO WHERE id_funcionario = ?";
+
+            ControleFuncionario cont = new ControleFuncionario();
+            cont.excluirFuncionario(sql,funcionario);
         }
-        return achou;
+        
     }
 
     @Override
     public void editar(Object obj) {
         if (obj instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) obj;
-            String chave = funcionario.getNomeUsuario();
-            for (int i = 0; i < funcionarios.size(); i++) {
-                Funcionario achou = funcionarios.get(i);
-                if (chave.equals(achou.getNomeUsuario())) {
-                    funcionarios.set(i, funcionario);
-                }
-            }
+            String sql = "UPDATE funcionario set "
+                    + "nome_usuario =?, cpf_funcionario =?, data_nascimento =?, telefone_funcionario= ?, data_entrada =?, perfil =?, data_demissao =?"
+                    + "where id_funcionario = ? ";
+            
+            ControleFuncionario cont = new ControleFuncionario();
+            cont.editarFuncionario(sql,funcionario);
         }
-        
+
     }
 
     @Override
@@ -55,27 +55,16 @@ public class FuncionarioDAO implements OperacoesDAO{
         ControleFuncionario cont = new ControleFuncionario();
         return funcionarios = cont.listarFuncionario(sql);
     }
-    
+
     public ArrayList pesquisarUsuario(String usuario) {
-        
-        String sql = "SELECT * FROM FUNCIONARIO WHERE NOME_USUARIO LIKE '%"+usuario+"%' ";
+        String sql = "SELECT * FROM FUNCIONARIO WHERE NOME_USUARIO LIKE '%" + usuario + "%' ";
         ControleFuncionario cont = new ControleFuncionario();
         return funcionarios = cont.listarFuncionario(sql);
     }
-    
-    public ArrayList pesquisar(Object obj) {
-        return funcionarios;
-    }
-    
-    
-    
-   // public void finalizar(){
-        //GerenciadorArquivos.gravarDados("usuarios.dat", usuarios);
-    //}
-    
-    
-    
-    
 
     
+
+   // public void finalizar(){
+    //GerenciadorArquivos.gravarDados("usuarios.dat", usuarios);
+    //}
 }
