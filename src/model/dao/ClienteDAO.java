@@ -28,7 +28,6 @@ public class ClienteDAO implements OperacoesDAO{
         if (obj instanceof Cliente) {
             Cliente cliente = (Cliente) obj;
             String sql = "DELETE FROM CLIENTE WHERE id_cliente = ?";
-
             ControleCliente cont = new ControleCliente();
             cont.excluirCliente(sql,cliente);
         }
@@ -46,7 +45,6 @@ public class ClienteDAO implements OperacoesDAO{
             ControleCliente cont = new ControleCliente();
             cont.editarCliente(sql,cliente);
         }
-
     }
 
     @Override

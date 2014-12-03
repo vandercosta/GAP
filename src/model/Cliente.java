@@ -8,15 +8,15 @@ public class Cliente {
     private int idCliente;
     private String nome;
     private String telefone;
-    private String cpf;
+    private long cpf;
 
-    public Cliente(int idCliente, String nome, String cpf) {
+    public Cliente(int idCliente, String nome, long cpf) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
     }
 
-    public Cliente(int idCliente, String nome, String telefone, String cpf) {
+    public Cliente(int idCliente, String nome, String telefone, long cpf) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.telefone = telefone;
@@ -24,11 +24,11 @@ public class Cliente {
     }
     
     
-    public String getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
