@@ -1,15 +1,12 @@
 package controller;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import model.Funcionario;
 
 /**
  *
@@ -33,11 +30,10 @@ public class ControleCliente {
                 int idCliente = rs.getInt("ID_CLIENTE");
                 String nomeCliente = rs.getString("NOME_CLIENTE");
                 long cpf = rs.getLong("CPF_CLIENTE");
-                String telefone = rs.getString("TELEFONE_FUNCIONARIO");
+                String telefone = rs.getString("TELEFONE_CLIENTE");
 
-                Cliente cliente = new Cliente(idCliente, nomeCliente, cpf);
+                Cliente cliente = new Cliente(idCliente, nomeCliente, telefone, cpf);
 
-                //funcionario.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
                 listaClientes.add(cliente);
             }
         } catch (SQLException ex) {
@@ -63,38 +59,37 @@ public class ControleCliente {
         }
 
     }
-       
-    public void editarCliente(String consulta, Cliente cliente){
+
+    public void editarCliente(String consulta, Cliente cliente) {
+
         
-        //efetua conexão, nunca muda
         Connection conexao = conector.getConnection();
-        
-        try{
+
+        try {
             PreparedStatement ps = conexao.prepareStatement(consulta);
-            
+
             ps.setString(1, cliente.getTelefone());
             ps.setLong(2, cliente.getCpf());
             ps.setString(3, cliente.getNome());
+            ps.setInt(4, cliente.getIdCliente());
             ps.executeUpdate();
-            
-        }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao editar cliente"+" detalhes: "+ex.getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao editar cliente" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
-    public void excluirCliente(String consulta, Cliente cliente){
-        
+
+    public void excluirCliente(String consulta, Cliente cliente) {
+
         //efetua conexão, nunca muda
         Connection conexao = conector.getConnection();
-        
-        try{
+        try {
             PreparedStatement ps = conexao.prepareStatement(consulta);
             ps.setInt(1, cliente.getIdCliente());
-            ps.execute(); 
-        }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Erro na exclusão do cliente"+" detalhes: "+ex.getMessage(), "Erro",JOptionPane.ERROR_MESSAGE);
+            ps.execute();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na exclusão do cliente" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
 }

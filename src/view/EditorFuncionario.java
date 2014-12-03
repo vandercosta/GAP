@@ -12,8 +12,8 @@ import model.dao.FuncionarioDAO;
 public class EditorFuncionario extends javax.swing.JFrame implements ComandoJanela {
 
     SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
-    FuncionarioDAO funcionarioDao = new FuncionarioDAO();
-    Funcionario funcionarioEditado;
+    FuncionarioDAO dao = new FuncionarioDAO();
+    Funcionario editado;
 
     public EditorFuncionario() {
         initComponents();
@@ -212,8 +212,8 @@ public class EditorFuncionario extends javax.swing.JFrame implements ComandoJane
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        funcionarioEditado.setNomeUsuario(textNome.getText());
-        funcionarioEditado.setCpf(Long.valueOf(textCpf.getText()));
+        editado.setNomeUsuario(textNome.getText());
+        editado.setCpf(Long.valueOf(textCpf.getText()));
 
         String dataNascimento = textNascimento.getText();
         Calendar nascimento = Calendar.getInstance();
@@ -226,27 +226,28 @@ public class EditorFuncionario extends javax.swing.JFrame implements ComandoJane
 
         try {
             nascimento.setTime(formatoData.parse(dataNascimento));
-            funcionarioEditado.setDataNascimento(nascimento);
+            editado.setDataNascimento(nascimento);
 
             entrada.setTime(formatoData.parse(dataEntrada));
-            funcionarioEditado.setDataEntrada(entrada);
+            editado.setDataEntrada(entrada);
+
+            editado.setTelefone(textTelefone.getText());
+            editado.setPerfil(comboPerfil.getSelectedIndex());
+
+            this.dao.editar(editado);
+            dispose();
 
             if (dataDemissao.equals("")) {
-                funcionarioEditado.setDataDemissao(null);
+                editado.setDataDemissao(null);
             } else {
                 demissao.setTime(formatoData.parse(dataDemissao));
-                funcionarioEditado.setDataDemissao(demissao);
+                editado.setDataDemissao(demissao);
             }
 
         } catch (ParseException ex) {
             Logger.getLogger(EditorFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        funcionarioEditado.setTelefone(textTelefone.getText());
-        funcionarioEditado.setPerfil(comboPerfil.getSelectedIndex());
-
-        this.funcionarioDao.editar(funcionarioEditado);
-        dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -283,17 +284,15 @@ public class EditorFuncionario extends javax.swing.JFrame implements ComandoJane
     public void abrirJanelas(Object obj) {
         this.setLocationRelativeTo(null);
 
-        this.funcionarioEditado = (Funcionario) obj;
-        textNome.setText(this.funcionarioEditado.getNomeUsuario());
-        textCpf.setText(String.valueOf(this.funcionarioEditado.getCpf()));
-        textNascimento.setText(this.formatoData.format(this.funcionarioEditado.getDataNascimento().getTime()));
-        textTelefone.setText(this.funcionarioEditado.getTelefone());
-        textEntrada.setText(this.formatoData.format(this.funcionarioEditado.getDataEntrada().getTime()));
+        textCpf.setText(String.valueOf(this.editado.getCpf()));
+        textNascimento.setText(this.formatoData.format(this.editado.getDataNascimento().getTime()));
+        textTelefone.setText(this.editado.getTelefone());
+        textEntrada.setText(this.formatoData.format(this.editado.getDataEntrada().getTime()));
 
-        comboPerfil.setSelectedIndex(this.funcionarioEditado.getPerfil());
+        comboPerfil.setSelectedIndex(this.editado.getPerfil());
 
-        if (this.funcionarioEditado.getDataDemissao() != null) {
-            textDemissao.setText(this.formatoData.format(this.funcionarioEditado.getDataDemissao().getTime()));
+        if (this.editado.getDataDemissao() != null) {
+            textDemissao.setText(this.formatoData.format(this.editado.getDataDemissao().getTime()));
         }
         this.setVisible(true);
     }
