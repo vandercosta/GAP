@@ -31,7 +31,6 @@ public class ClienteDAO implements OperacoesDAO{
             ControleCliente cont = new ControleCliente();
             cont.excluirCliente(sql,cliente);
         }
-        
     }
 
     @Override
@@ -54,8 +53,8 @@ public class ClienteDAO implements OperacoesDAO{
         return clientes = cont.listarCliente(sql);
     }
 
-    public ArrayList pesquisarUsuario(String usuario) {
-        String sql = "SELECT * FROM CLIENTE WHERE NOME_CLIENTE LIKE '%" + usuario + "%' ";
+    public ArrayList pesquisar(String busca) {
+        String sql = "SELECT * FROM CLIENTE WHERE NOME_CLIENTE LIKE '%" + busca + "%' ";
         ControleCliente cont = new ControleCliente();
         return clientes = cont.listarCliente(sql);
     }

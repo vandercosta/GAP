@@ -173,7 +173,7 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        editarFornecedor();
+        editarFuncionario();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -201,7 +201,7 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
 
     private void jtFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFuncionarioMouseClicked
         if (evt.getClickCount() == 2) {
-            editarFornecedor();
+            editarFuncionario();
         }
     }//GEN-LAST:event_jtFuncionarioMouseClicked
 
@@ -240,7 +240,7 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
         jtFuncionario.setModel(this.tabela);
     }
 
-    public void editarFornecedor() {
+    public void editarFuncionario() {
         Funcionario funcionarioSelecionado;
 
         if (jtFuncionario.getSelectedRow() != -1) {

@@ -22,8 +22,13 @@ public class Cliente {
         this.telefone = telefone;
         this.cpf = cpf;
     }
-    
-    
+
+    public Cliente(String nome, String telefone, long cpf) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
+    }
+
     public long getCpf() {
         return cpf;
     }
@@ -100,7 +105,7 @@ public class Cliente {
         clienteArray[TabelaCliente.INDICE_ID_CLIENTE] = String.valueOf(this.getIdCliente());
         clienteArray[TabelaCliente.INDICE_NOME] = this.getNome();
         clienteArray[TabelaCliente.INDICE_CPF] = String.valueOf(this.getCpf());
-        clienteArray[TabelaCliente.INDICE_TELEFONE] = String.valueOf(this.getTelefone());
+        clienteArray[TabelaCliente.INDICE_TELEFONE] = this.getTelefone();
         return clienteArray;
     }
     
