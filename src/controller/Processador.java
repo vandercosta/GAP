@@ -12,12 +12,12 @@ public class Processador {
 
     static {
         comandos.put("principal", "view.MenuPrincipal");
-        comandos.put("usuarios", "view.MenuUsuario");
+        comandos.put("usuarios", "view.MenuFuncionario");
         
         comandos.put("[GAP]", "view.MenuInicial");
         
         comandos.put("[GAP, Administrador]", "view.MenuAdministrador");
-        comandos.put("[GAP, Administrador, Usuários]", "view.MenuUsuario");
+        comandos.put("[GAP, Administrador, Usuários]", "view.MenuFuncionario");
         comandos.put("[GAP, Administrador, Autorizar Compras]", "view.MenuAutorizaCompra");
         
         comandos.put("[GAP, Vendas]", "view.MenuVenda");

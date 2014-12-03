@@ -195,8 +195,14 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="textTelefone" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="textCpf" min="-2" pref="149" max="-2" attributes="0"/>
-                                  <Component id="textNascimento" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="textNome" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="textDiaNascimento" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="textMesNascimento" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="textAnoNascimento" min="-2" pref="35" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -220,7 +226,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textDiaNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textMesNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textAnoNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -236,6 +244,9 @@
             <Component class="javax.swing.JTextField" name="textNome">
             </Component>
             <Component class="javax.swing.JTextField" name="textCpf">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textCpfKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -252,7 +263,7 @@
                 <Property name="text" type="java.lang.String" value="Nascimento"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textNascimento">
+            <Component class="javax.swing.JTextField" name="textDiaNascimento">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -260,6 +271,28 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textTelefone">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="textMesNascimento">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="JAN"/>
+                    <StringItem index="1" value="FEV"/>
+                    <StringItem index="2" value="MAR"/>
+                    <StringItem index="3" value="ABR"/>
+                    <StringItem index="4" value="MAI"/>
+                    <StringItem index="5" value="JUN"/>
+                    <StringItem index="6" value="JUL"/>
+                    <StringItem index="7" value="AGO"/>
+                    <StringItem index="8" value="SET"/>
+                    <StringItem index="9" value="OUT"/>
+                    <StringItem index="10" value="NOV"/>
+                    <StringItem index="11" value="DEC"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textAnoNascimento">
             </Component>
           </SubComponents>
         </Container>
