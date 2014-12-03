@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
 import view.tabelas.TabelaFuncionario;
@@ -23,16 +24,16 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
 
     public MenuFuncionario() {
         initComponents();
+        limparTabela();
 
-        jtFuncionario.setModel(this.tabela);
-        jtFuncionario.setAutoCreateRowSorter(true);
     }
 
     public final void limparTabela() {
 
+        //jtFuncionario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        jtFuncionario.getTableHeader().setReorderingAllowed(false);
         jtFuncionario.setModel(this.tabela);
-        //jButtonSelecionar.setVisible(false);
-        //jtInconsistencia.setAutoCreateRowSorter(true);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -57,6 +58,13 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
 
             }
         ));
+        jtFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtFuncionario.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jtFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtFuncionarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtFuncionario);
 
         jButton1.setText("Editar");
@@ -165,31 +173,15 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        Funcionario funcionarioSelecionado;
-
-        if (jtFuncionario.getSelectedRow() != -1) {
-            String id = String.valueOf(jtFuncionario.getModel().getValueAt(jtFuncionario.getSelectedRow(), 0));
-            int idFuncionario = Integer.valueOf(id);
-            for (int i = 0; i < this.listaFuncionarios.size(); i++) {
-                if (this.listaFuncionarios.get(i).getIdFuncionario() == idFuncionario) {
-                    funcionarioSelecionado = this.listaFuncionarios.get(i);
-                    Processador.abrirEditar("editarFuncionario", funcionarioSelecionado);
-                    break;
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecionae uma linha", "Alerta", JOptionPane.WARNING_MESSAGE);
-        }
-
-
+        editarFornecedor();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        if (JOptionPane.showConfirmDialog(null, "Deseja Excluir:", "AVISO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-            Funcionario funcionarioSelecionado;
-            if (jtFuncionario.getSelectedRow() != -1) {
+        Funcionario funcionarioSelecionado;
+        if (jtFuncionario.getSelectedRow() != -1) {
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja Excluir:", "AVISO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 String id = String.valueOf(jtFuncionario.getModel().getValueAt(jtFuncionario.getSelectedRow(), 0));
                 int idFuncionario = Integer.valueOf(id);
                 for (int i = 0; i < this.listaFuncionarios.size(); i++) {
@@ -201,13 +193,17 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
                         break;
                     }
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Selecionae uma linha", "Alerta", JOptionPane.WARNING_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecionae uma linha", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
-
-
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jtFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFuncionarioMouseClicked
+        if (evt.getClickCount() == 2) {
+            editarFornecedor();
+        }
+    }//GEN-LAST:event_jtFuncionarioMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -233,19 +229,32 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
     }
 
     public void buscarTodos() {
-
         this.listaFuncionarios = this.funcionarioDao.pequisarTodos();
-
         this.tabela.setFuncionario(this.listaFuncionarios);
         jtFuncionario.setModel(tabela);
-        //System.out.println(listaFuncionarios.get(0).getDataEntrada().getTime());
     }
 
     public void buscarPorNome(String usuario) {
         this.listaFuncionarios = this.funcionarioDao.pesquisarUsuario(usuario);
-
         this.tabela.setFuncionario(this.listaFuncionarios);
         jtFuncionario.setModel(this.tabela);
     }
 
+    public void editarFornecedor() {
+        Funcionario funcionarioSelecionado;
+
+        if (jtFuncionario.getSelectedRow() != -1) {
+            String id = String.valueOf(jtFuncionario.getModel().getValueAt(jtFuncionario.getSelectedRow(), 0));
+            int idFuncionario = Integer.valueOf(id);
+            for (int i = 0; i < this.listaFuncionarios.size(); i++) {
+                if (this.listaFuncionarios.get(i).getIdFuncionario() == idFuncionario) {
+                    funcionarioSelecionado = this.listaFuncionarios.get(i);
+                    Processador.abrirEditar("editarFuncionario", funcionarioSelecionado);
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecionae uma linha", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 }

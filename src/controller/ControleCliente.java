@@ -22,7 +22,7 @@ public class ControleCliente {
     public ArrayList<Cliente> listarCliente(String consulta) {
 
         Connection conexao = conector.getConnection();
-        ArrayList<Cliente> listaCliente = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
 
         try {
             PreparedStatement ps = conexao.prepareStatement(consulta);
