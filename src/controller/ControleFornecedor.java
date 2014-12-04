@@ -47,7 +47,7 @@ public class ControleFornecedor {
     }
     
     
-    public void adicionaFornecedor(Fornecedor fornecedor, String consulta){
+    public void adicionaFornecedor(String consulta, Fornecedor fornecedor){
         
        Connection conexao = conector.getConnection();
 
