@@ -17,8 +17,8 @@ public class ControleFuncionario {
     
     //efetua conexão, nunca muda
     ConectorBanco conector = new ConectorBanco();
-    
     SimpleDateFormat formatoData = new SimpleDateFormat("dd-MMM-yy");
+    
     public ArrayList<Funcionario> listarFuncionario(String consulta){
         
         Connection conexao = conector.getConnection();

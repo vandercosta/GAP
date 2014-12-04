@@ -17,6 +17,14 @@ public class Fornecedor {
         this.cnpj = cnpj;
     }
 
+    public Fornecedor(String nome, String telefone, long cnpj) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cnpj = cnpj;
+    }
+    
+    
+
     public int getIdFornecedor() {
         return idFornecedor;
     }
@@ -94,7 +102,7 @@ public class Fornecedor {
         fornecedorArray[TabelaFornecedor.INDICE_ID_FORNECEDOR] = String.valueOf(this.getIdFornecedor());
         fornecedorArray[TabelaFornecedor.INDICE_NOME] = this.getNome();
         fornecedorArray[TabelaFornecedor.INDICE_CNPJ] = String.valueOf(this.getCnpj());
-        fornecedorArray[TabelaFornecedor.INDICE_TELEFONE] = String.valueOf(this.getTelefone());
+        fornecedorArray[TabelaFornecedor.INDICE_TELEFONE] = this.getTelefone();
         return fornecedorArray;
     }
     
