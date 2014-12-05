@@ -74,13 +74,12 @@ public class ControleFuncionario {
         try{
             PreparedStatement ps = conexao.prepareStatement(consulta);
             ps.setString(1, this.formatoData.format(funcionario.getDataEntrada().getTime()));
-            ps.setString(2, null);
-            ps.setInt(3, funcionario.getPerfil());
-            ps.setLong(4, funcionario.getCpf());
-            ps.setString(5, this.formatoData.format(funcionario.getDataNascimento().getTime()));
-            ps.setString(6, funcionario.getTelefone());
-            ps.setString(7,funcionario.getNomeUsuario());
-            ps.setInt(8,1); //insere especialidade
+            //ps.setString(2, null);
+            ps.setInt(2, funcionario.getPerfil());
+            ps.setLong(3, funcionario.getCpf());
+            ps.setString(4, this.formatoData.format(funcionario.getDataNascimento().getTime()));
+            ps.setString(5, funcionario.getTelefone());
+            ps.setString(6,funcionario.getNomeUsuario());
             ps.execute();
             
         }catch (SQLException ex){

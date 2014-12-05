@@ -14,8 +14,8 @@ public class ProdutoDAO implements OperacoesDAO{
         if (obj instanceof Produto) {
             Produto produto = (Produto) obj;
             String sql = "insert into produto("
-                    + "id_produto, nome_produto, valor_produto, quantidade, modelo, id_fornecedor, id_compra, id_categoria)"                 
-                    + " values (s_cliente.nextval,?,?,?,?,?,?,?)";
+                    + "id_produto, nome_produto, valor_produto, quantidade, modelo, id_categoria)"                 
+                    + " values (s_cliente.nextval,?,?,?,?,?)";
 
             ControleProduto cont = new ControleProduto();
             cont.adicionaProduto(sql, produto);
@@ -37,7 +37,7 @@ public class ProdutoDAO implements OperacoesDAO{
         if (obj instanceof Produto) {
             Produto produto = (Produto) obj;
             String sql = "UPDATE produto set "
-                    + "nome_produto, valor_produto, quantidade, modelo, id_fornecedor, id_compra, id_categoria" 
+                    + "nome_produto =?, valor_produto=?, quantidade =?, modelo =?, id_categoria =?" 
                     + "where id_produto = ? ";
             
             ControleProduto cont = new ControleProduto();
@@ -45,6 +45,7 @@ public class ProdutoDAO implements OperacoesDAO{
         }
     }    
        
+    //verificar essas listagem pq tem que pegar as categorias
     @Override
     public ArrayList pequisarTodos() {
         String sql = "SELECT * FROM PRODUTO";

@@ -7,12 +7,12 @@ public class Produto {
     private int idProduto;
     private String nome;
     private String modelo;
-    private String categoria;
+    private Categoria categoria;
     private double valor;
     private int quantidade;
 
     
-    public Produto(int idProduto, String nome, String modelo, String categoria, double valor, int quantidade) {
+    public Produto(int idProduto, String nome, String modelo, Categoria categoria, double valor, int quantidade) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.modelo = modelo;
@@ -54,11 +54,11 @@ public class Produto {
         this.modelo = modelo;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
