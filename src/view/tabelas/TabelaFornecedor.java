@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view.tabelas;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import model.Fornecedor;
 
-/**
- *
- * @author João Fontoura
- */
+
 public class TabelaFornecedor extends AbstractTableModel{
     
     private ArrayList<Fornecedor> fornecedores = new ArrayList<>();
-    private String[] colunas = {"ID Fornecedor", "Nome", "Cnpj", "Telefone"};
+    private String[] colunas = {"ID", "Nome", "Cnpj", "Telefone"};
     
     public static final int INDICE_ID_FORNECEDOR = 0;
     public static final int INDICE_NOME = 1;

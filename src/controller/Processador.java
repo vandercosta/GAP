@@ -32,6 +32,12 @@ public class Processador {
         comandos.put("novoFuncionario", "view.NovoFuncionario");
         comandos.put("editarFuncionario", "view.EditorFuncionario");
         
+        comandos.put("novoCliente", "view.NovoCliente");
+        comandos.put("editarCliente", "view.EditorCliente");
+        
+        comandos.put("novoFornecedor", "view.NovoFornecedor");
+        comandos.put("editarFornecedor", "view.EditorFornecedor");
+        
     }
 
     public static void alterarJanelaInterna(String cmd, MenuPrincipal menuPrincipal) {
