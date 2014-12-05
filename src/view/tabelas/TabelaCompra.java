@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view.tabelas;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import model.Compra;
 
-/**
- *
- * @author João Fontoura
- */
+
 public class TabelaCompra extends AbstractTableModel {
     private ArrayList<Compra> compras = new ArrayList<>();
-    private String[] colunas = {"ID Compra", "fornecedor", "valorTotal", "usuario"};
+    private String[] colunas = {"ID", "fornecedor", "valorTotal", "Funcionario"};
 
     public static final int INDICE_ID_COMPRA = 0;
     public static final int INDICE_FORNECEDOR = 1;
     public static final int INDICE_VALORTOTAL = 2;
-    public static final int INDICE_USUARIO = 3;
+    public static final int INDICE_FUNCIONARIO = 3;
 
     @Override
     public int getRowCount() {

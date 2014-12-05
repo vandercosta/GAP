@@ -250,7 +250,7 @@ public class NovoProduto extends javax.swing.JFrame implements ComandoJanela {
 
         for (int i = 0; i < listaCategoria.size(); i++) {
             comboCat.addItem(listaCategoria.get(i).getNomeCategoria());
-            //comboCat.addItem(listaCategoria.get(i));
+            
         }
 
     }

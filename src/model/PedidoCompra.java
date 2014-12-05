@@ -3,14 +3,16 @@
 package model;
 
 import java.util.Objects;
-import view.tabelas.TabelaPedido;
+import view.tabelas.TabelaPedidoCompra;
 
 
-public class Pedido {
+public class PedidoCompra {
     private Produto produto;
+    private Compra compra;
+    
     private int quantidade;
 
-    public Pedido(Produto produto, int quantidade) {
+    public PedidoCompra(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
@@ -30,6 +32,8 @@ public class Pedido {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+    
+    
 
     @Override
     public int hashCode() {
@@ -47,7 +51,7 @@ public class Pedido {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pedido other = (Pedido) obj;
+        final PedidoCompra other = (PedidoCompra) obj;
         if (!Objects.equals(this.produto, other.produto)) {
             return false;
         }
@@ -63,10 +67,19 @@ public class Pedido {
     }
     
     public String[] toArray() {
-        String[] pedidoArray = new String[2];
-        pedidoArray[TabelaPedido.INDICE_PRODUTO] = String.valueOf(this.getProduto());
-        pedidoArray[TabelaPedido.INDICE_QUANTIDADE] = String.valueOf(this.getQuantidade());
+        String[] pedidoArray = new String[3];
+        pedidoArray[TabelaPedidoCompra.INDICE_PRODUTO] = String.valueOf(this.getProduto().getIdProduto());
+        pedidoArray[TabelaPedidoCompra.INDICE_COMPRA] = String.valueOf(this.getCompra().getIdCompra());
+        pedidoArray[TabelaPedidoCompra.INDICE_QUANTIDADE] = String.valueOf(this.getQuantidade());
         return pedidoArray;
+    }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
     
 }

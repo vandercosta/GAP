@@ -22,6 +22,13 @@ public class Fornecedor {
         this.telefone = telefone;
         this.cnpj = cnpj;
     }
+
+    public Fornecedor(int idFornecedor, String nome) {
+        this.idFornecedor = idFornecedor;
+        this.nome = nome;
+    }
+    
+    
     
     
 

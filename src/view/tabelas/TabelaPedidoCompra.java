@@ -1,25 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view.tabelas;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import model.Pedido;
+import model.PedidoCompra;
 
-/**
- *
- * @author João Fontoura
- */
-public class TabelaPedido extends AbstractTableModel{
+public class TabelaPedidoCompra extends AbstractTableModel{
     
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
-    private String[] colunas = {"produto", "Quantidade"};
+    private ArrayList<PedidoCompra> pedidos = new ArrayList<>();
+    private String[] colunas = {"produto","Compra", "Quantidade"};
     
     public static final int INDICE_PRODUTO = 0;
-    public static final int INDICE_QUANTIDADE = 1;
+    public static final int INDICE_COMPRA = 1;
+    public static final int INDICE_QUANTIDADE = 2;
 
 
     @Override
@@ -43,12 +36,12 @@ public class TabelaPedido extends AbstractTableModel{
         return linha[columnIndex];
     }
     
-    public void inserirPedido(Pedido pedido) {
+    public void inserirPedido(PedidoCompra pedido) {
         pedidos.add(pedido);
         this.fireTableDataChanged();
     }
     
-    public Pedido getSelectedFornecedor(int linhaSelecionada) {
+    public PedidoCompra getSelectedFornecedor(int linhaSelecionada) {
         return pedidos.get(linhaSelecionada);
     }
     
@@ -57,7 +50,7 @@ public class TabelaPedido extends AbstractTableModel{
         this.fireTableDataChanged();
     }
     
-    public void setPedido(ArrayList<Pedido> pedidos){
+    public void setPedido(ArrayList<PedidoCompra> pedidos){
         this.pedidos = pedidos;
         this.fireTableDataChanged();
     }

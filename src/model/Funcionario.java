@@ -46,6 +46,11 @@ public class Funcionario {
         this.dataEntrada = dataEntrada;
         this.perfil = perfil;
     }
+
+    public Funcionario(int idFuncionario, String nomeUsuario) {
+        this.idFuncionario = idFuncionario;
+        this.nomeUsuario = nomeUsuario;
+    }
     
     
     

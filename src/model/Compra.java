@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
 import view.tabelas.TabelaCompra;
@@ -11,17 +10,25 @@ public class Compra {
     private Calendar dataCompra;
     private Fornecedor fornecedor;
     private double valorTotal;
-    private ArrayList<Pedido> listaPedidos;
     private Funcionario usuario;
 
-    public Compra(int idCompra, Calendar dataCompra, Fornecedor fornecedor, double valorTotal, ArrayList<Pedido> listaPedidos, Funcionario usuario) {
+    public Compra(int idCompra, Calendar dataCompra, Fornecedor fornecedor, double valorTotal, Funcionario usuario) {
         this.idCompra = idCompra;
         this.dataCompra = dataCompra;
         this.fornecedor = fornecedor;
         this.valorTotal = valorTotal;
-        this.listaPedidos = listaPedidos;
         this.usuario = usuario;
     }
+
+    public Compra(Calendar dataCompra, Fornecedor fornecedor, double valorTotal, Funcionario usuario) {
+        this.dataCompra = dataCompra;
+        this.fornecedor = fornecedor;
+        this.valorTotal = valorTotal;
+        this.usuario = usuario;
+    }
+    
+    
+    
 
     public int getIdCompra() {
         return idCompra;
@@ -55,13 +62,7 @@ public class Compra {
         this.valorTotal = valorTotal;
     }
 
-    public ArrayList<Pedido> getListaPedidos() {
-        return listaPedidos;
-    }
-
-    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
-    }
+    
 
     public Funcionario getUsuario() {
         return usuario;
@@ -78,7 +79,6 @@ public class Compra {
         hash = 89 * hash + Objects.hashCode(this.dataCompra);
         hash = 89 * hash + Objects.hashCode(this.fornecedor);
         hash = 89 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
-        hash = 89 * hash + Objects.hashCode(this.listaPedidos);
         hash = 89 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
@@ -104,9 +104,7 @@ public class Compra {
         if (Double.doubleToLongBits(this.valorTotal) != Double.doubleToLongBits(other.valorTotal)) {
             return false;
         }
-        if (!Objects.equals(this.listaPedidos, other.listaPedidos)) {
-            return false;
-        }
+       
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
@@ -115,15 +113,15 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" + "idCompra=" + idCompra + ", dataCompra=" + dataCompra + ", fornecedor=" + fornecedor + ", valorTotal=" + valorTotal + ", listaPedidos=" + listaPedidos + ", usuario=" + usuario + '}';
+        return "Compra{" + "idCompra=" + idCompra + ", dataCompra=" + dataCompra + ", fornecedor=" + fornecedor + ", valorTotal=" + valorTotal + ", usuario=" + usuario + '}';
     }
     
     public String[] toArray() {
         String[] compraArray = new String[4];
         compraArray[TabelaCompra.INDICE_ID_COMPRA] = String.valueOf(this.getIdCompra());
-        compraArray[TabelaCompra.INDICE_FORNECEDOR] = String.valueOf(this.getFornecedor());
+        compraArray[TabelaCompra.INDICE_FORNECEDOR] = this.getFornecedor().getNome();
         compraArray[TabelaCompra.INDICE_VALORTOTAL] = String.valueOf(this.getValorTotal());
-        compraArray[TabelaCompra.INDICE_USUARIO] = String.valueOf(this.getUsuario());
+        compraArray[TabelaCompra.INDICE_FUNCIONARIO] = this.getUsuario().getNomeUsuario();
         return compraArray;
     }
     

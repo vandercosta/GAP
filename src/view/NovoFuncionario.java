@@ -244,17 +244,14 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
         try {
             
             cNascimento.setTime(this.formatoData.parse(dataNascimento));
+            cEntrada.setTime(this.formatoData.parse(dataEntrada));
             Funcionario funcionario = new Funcionario(nome, cpf, telefone, cNascimento, cEntrada, perfil);
             this.funcionario.inserir(funcionario);
             dispose();
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir dataNascimento funcionario" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        try {
-            cEntrada.setTime(this.formatoData.parse(dataEntrada));
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir dataEntrada funcionario" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

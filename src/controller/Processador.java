@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.PopupMenu;
-import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -28,7 +26,7 @@ public class Processador {
         comandos.put("[GAP, Compras]", "view.MenuCompra");
         comandos.put("[GAP, Compras, Estoque]", "view.MenuEstoque");
         comandos.put("[GAP, Compras, Fornecedores]", "view.MenuFornecedor");
-        comandos.put("[GAP, Compras, Comprar Produto]", "view.MenuComprarProduto");
+        comandos.put("[GAP, Compras, Comprar Produto]", "view.MenuCompraProduto");
        
         comandos.put("novoFuncionario", "view.NovoFuncionario");
         comandos.put("editarFuncionario", "view.EditorFuncionario");
@@ -41,6 +39,9 @@ public class Processador {
         
         comandos.put("novoProduto", "view.NovoProduto");
         comandos.put("editarProduto", "view.EditorProduto");
+        
+        comandos.put("novaCompra", "view.NovaCompra");
+        comandos.put("editarCompra", "view.EditorCompra");
         
     }
 

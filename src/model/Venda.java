@@ -9,10 +9,10 @@ public class Venda {
     private Calendar dataVenda;
     private Cliente cliente;
     private double valorTotal;
-    private ArrayList<Pedido> listaPedidos;
+    private ArrayList<PedidoCompra> listaPedidos;
     private Funcionario usuario;
 
-    public Venda(int idVenda, Calendar dataVenda, Cliente cliente, double valorTotal, ArrayList<Pedido> listaPedidos, Funcionario usuario) {
+    public Venda(int idVenda, Calendar dataVenda, Cliente cliente, double valorTotal, ArrayList<PedidoCompra> listaPedidos, Funcionario usuario) {
         this.idVenda = idVenda;
         this.dataVenda = dataVenda;
         this.cliente = cliente;
@@ -61,11 +61,11 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public ArrayList<Pedido> getListaPedidos() {
+    public ArrayList<PedidoCompra> getListaPedidos() {
         return listaPedidos;
     }
 
-    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
+    public void setListaPedidos(ArrayList<PedidoCompra> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
 
