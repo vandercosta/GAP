@@ -41,7 +41,7 @@ public class InsereProduto extends javax.swing.JFrame {
         textPesquisa = new javax.swing.JTextField();
         btPesquisa = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,7 +160,8 @@ public class InsereProduto extends javax.swing.JFrame {
             for (int i = 0; i < this.lista.size(); i++) {
                 if (this.lista.get(i).getIdProduto()== idSelecionado) {
                     this.selecionado = this.lista.get(i);
-                    
+                    this.novaCompra.alterarTabela(this.selecionado);
+                    dispose();
                     break;
                 }
             }
