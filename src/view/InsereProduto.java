@@ -40,6 +40,8 @@ public class InsereProduto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         textPesquisa = new javax.swing.JTextField();
         btPesquisa = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        textQ = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,11 +73,20 @@ public class InsereProduto extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Quantidade");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 639, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textQ, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 399, Short.MAX_VALUE)
+                .addComponent(btEditar)
+                .addGap(34, 34, 34))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(32, 32, 32)
@@ -86,18 +97,21 @@ public class InsereProduto extends javax.swing.JFrame {
                             .addComponent(textPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btPesquisa)
-                            .addGap(308, 308, 308))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGap(340, 340, 340))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(443, 443, 443)
-                                .addComponent(btEditar)
-                                .addGap(69, 69, 69))))
-                    .addGap(32, 32, 32)))
+                            .addGap(32, 32, 32)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(346, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(textQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btEditar))
+                .addGap(36, 36, 36))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(41, 41, 41)
@@ -107,9 +121,7 @@ public class InsereProduto extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(btEditar)
-                    .addContainerGap(42, Short.MAX_VALUE)))
+                    .addContainerGap(83, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,7 +172,8 @@ public class InsereProduto extends javax.swing.JFrame {
             for (int i = 0; i < this.lista.size(); i++) {
                 if (this.lista.get(i).getIdProduto()== idSelecionado) {
                     this.selecionado = this.lista.get(i);
-                    this.novaCompra.alterarTabela(this.selecionado);
+                    this.novaCompra.alterarTabela(this.selecionado, Integer.valueOf(textQ.getText()));
+                    
                     dispose();
                     break;
                 }
@@ -174,9 +187,11 @@ public class InsereProduto extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btPesquisa;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt;
     private javax.swing.JTextField textPesquisa;
+    private javax.swing.JTextField textQ;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,6 +21,8 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
     CompraDAO dao = new CompraDAO();
     TabelaProduto tabela = new TabelaProduto();
     ArrayList<Produto> lista = new ArrayList<>();
+    
+    ArrayList<Integer> quanti = new ArrayList<>();
     Produto selecionado;
 
     public NovaCompra() {
@@ -47,6 +49,7 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
         comboFornecedor = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         labelValor = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,6 +95,13 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
 
         labelValor.setText("0");
 
+        jButton3.setText("remover");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -112,14 +122,16 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(labelValor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton3)
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelValor, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -134,8 +146,9 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel7)
                                 .addComponent(labelValor))
-                            .addComponent(jButton2))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton2)
+                                .addComponent(jButton3))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -148,8 +161,8 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(comboFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(comboFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jButton1.setText("Cadastrar");
@@ -206,7 +219,7 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
 
         try {
           
-            int valorTotal = Integer.valueOf(labelValor.getText());
+            double valorTotal = Double.valueOf(labelValor.getText());
 
             String dataCompra = textData.getText();
             Calendar dCompra = Calendar.getInstance();
@@ -245,11 +258,17 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
         novoProd.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       
+        removerProduto();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboFornecedor;
     private javax.swing.JComboBox comboFun;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -311,6 +330,8 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
                         int linha = jt.getSelectedRow();
                         this.tabela.removeProdutos(linha);
                         this.dao.excluir(this.selecionado);
+                        this.lista.remove(i);
+                        atualizaValor();
                         break;
                     }
                 }
@@ -320,8 +341,19 @@ public class NovaCompra extends javax.swing.JFrame implements ComandoJanela {
         }
     }
     
-    public void alterarTabela(Produto produto){
+    public void alterarTabela(Produto produto, int quantidade){
+        this.quanti.add(quantidade);
+        this.lista.add(produto);
         this.tabela.inserirProduto(produto);
         jt.setModel(this.tabela);
+        atualizaValor();
+    }
+    
+    public void atualizaValor(){
+        double valor = 0;
+        for(int i=0; i<lista.size();i++){
+            valor += lista.get(i).getValor()*this.quanti.get(i);
+        }
+        labelValor.setText(String.valueOf(valor));
     }
 }
