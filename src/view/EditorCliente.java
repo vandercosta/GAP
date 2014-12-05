@@ -151,14 +151,8 @@ public class EditorCliente extends javax.swing.JFrame implements ComandoJanela {
   
         editado.setCpf(cpf);
         editado.setTelefone(textTelefone.getText());
-        
-        
         this.dao.editar(editado);
         dispose();
-        
-        
-        
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCpfKeyTyped

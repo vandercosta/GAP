@@ -1,7 +1,6 @@
 package view;
 
 import controller.ComandoJanela;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Categoria;
@@ -9,11 +8,14 @@ import model.Produto;
 import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
 
-public class NovoProduto extends javax.swing.JFrame implements ComandoJanela {
+public class EditorProduto extends javax.swing.JFrame implements ComandoJanela {
 
+    
     ProdutoDAO dao = new ProdutoDAO();
+    
+    Produto editado;
 
-    public NovoProduto() {
+    public EditorProduto() {
         initComponents();
         listarCategorias();
     }
@@ -125,7 +127,7 @@ public class NovoProduto extends javax.swing.JFrame implements ComandoJanela {
                 .addContainerGap())
         );
 
-        jButton1.setText("Cadastrar");
+        jButton1.setText("Alterar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -179,20 +181,28 @@ public class NovoProduto extends javax.swing.JFrame implements ComandoJanela {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            String nome = textNome.getText();
+            editado.setNome(textNome.getText());
             
             String valorString = textValor.getText().replaceAll(",", ".");
-            
             double valor = Double.valueOf(valorString);
+            
+            editado.setValor(valor);
+            
             String modelo = textModelo.getText();
+            
+            editado.setModelo(modelo);
+            
             int idCategoria = comboCat.getSelectedIndex();
-
             String nomeCategoria = comboCat.getSelectedItem().toString();
-            int quantidade = Integer.valueOf(textQuantidade.getText());
-
             Categoria categoria = new Categoria(idCategoria, nomeCategoria);
-            Produto obj = new Produto(nome, modelo, categoria, valor, quantidade);
-            this.dao.inserir(obj);
+            
+            editado.setCategoria(categoria);
+            
+            int quantidade = Integer.valueOf(textQuantidade.getText());
+            
+            editado.setQuantidade(quantidade);
+
+            this.dao.editar(editado);
             dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Informações incorretas!" + " detalhes: " + e.getMessage(), "Erro", JOptionPane.WARNING_MESSAGE);
@@ -239,6 +249,22 @@ public class NovoProduto extends javax.swing.JFrame implements ComandoJanela {
     @Override
     public void abrirJanelas(Object obj) {
         this.setLocationRelativeTo(null);
+        
+        this.editado = (Produto) obj;
+        textNome.setText(this.editado.getNome());
+        
+        String valorString = String.valueOf(this.editado.getValor()).replaceAll("\\.",",");
+        
+        
+                
+        textValor.setText(valorString);
+               
+        textValor.setText(valorString);
+        
+        
+        textModelo.setText(this.editado.getModelo());
+        textQuantidade.setText(String.valueOf(this.editado.getQuantidade()));
+        comboCat.setSelectedIndex(this.editado.getCategoria().getIdCategoria());
         this.setVisible(true);
     }
 
@@ -250,7 +276,6 @@ public class NovoProduto extends javax.swing.JFrame implements ComandoJanela {
 
         for (int i = 0; i < listaCategoria.size(); i++) {
             comboCat.addItem(listaCategoria.get(i).getNomeCategoria());
-            //comboCat.addItem(listaCategoria.get(i));
         }
 
     }
