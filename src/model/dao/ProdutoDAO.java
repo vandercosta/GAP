@@ -48,13 +48,19 @@ public class ProdutoDAO implements OperacoesDAO{
     //verificar essas listagem pq tem que pegar as categorias
     @Override
     public ArrayList pequisarTodos() {
-        String sql = "SELECT * FROM PRODUTO";
+        
+        String sql =    "select *\n" +
+                        "from produto inner join categoria c\n" +
+                        "on c.id_categoria = produto.id_categoria";
+        
         ControleProduto cont = new ControleProduto();
         return produtos = cont.listarProduto(sql);
     }
 
     public ArrayList pesquisar(String busca) {
-        String sql = "SELECT * FROM PRODUTO WHERE NOME_PRODUTO LIKE '%" + busca + "%' ";
+        String sql =    "select *\n" +
+                        "from produto inner join categoria c\n" +
+                        "on c.id_categoria = produto.id_categoria WHERE NOME_PRODUTO LIKE '%" + busca + "%' ";
         ControleProduto cont = new ControleProduto();
         return produtos = cont.listarProduto(sql);
     }

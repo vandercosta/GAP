@@ -77,7 +77,7 @@ public class ControleProduto {
             ps.setInt(3, produto.getQuantidade());
             ps.setString(4, produto.getModelo());
             ps.setInt(5, produto.getCategoria().getIdCategoria());
-            ps.setInt(8, produto.getIdProduto());
+            ps.setInt(6, produto.getIdProduto());
             ps.executeUpdate();
 
         } catch (SQLException ex) {

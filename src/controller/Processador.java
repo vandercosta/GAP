@@ -4,6 +4,7 @@ import java.awt.PopupMenu;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import view.MenuPrincipal;
 
 public class Processador {
@@ -38,6 +39,9 @@ public class Processador {
         comandos.put("novoFornecedor", "view.NovoFornecedor");
         comandos.put("editarFornecedor", "view.EditorFornecedor");
         
+        comandos.put("novoProduto", "view.NovoProduto");
+        comandos.put("editarProduto", "view.EditorProduto");
+        
     }
 
     public static void alterarJanelaInterna(String cmd, MenuPrincipal menuPrincipal) {
@@ -54,11 +58,11 @@ public class Processador {
             menuPrincipal.getjDesktopPane1().add(comando.buscarPainel());
             
         } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException iex) {
-            System.out.println(iex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + iex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalAccessException iaex) {
-            System.out.println(iaex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + iaex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -71,11 +75,11 @@ public class Processador {
             ComandoJanela comando = (ComandoJanela) classe.newInstance();
             comando.abrirJanelas();
         } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException iex) {
-            System.out.println(iex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + iex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalAccessException iaex) {
-            System.out.println(iaex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + iaex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -88,11 +92,11 @@ public class Processador {
             ComandoJanela comando = (ComandoJanela) classe.newInstance();
             comando.abrirJanelas(obj);
         } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException iex) {
-            System.out.println(iex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + iex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalAccessException iaex) {
-            System.out.println(iaex);
+            JOptionPane.showMessageDialog(null, "Erro" + " detalhes: " + iaex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     

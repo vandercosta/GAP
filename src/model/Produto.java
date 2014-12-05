@@ -21,6 +21,16 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
+    public Produto(String nome, String modelo, Categoria categoria, double valor, int quantidade) {
+        this.nome = nome;
+        this.modelo = modelo;
+        this.categoria = categoria;
+        this.valor = valor;
+        this.quantidade = quantidade;
+    }
+    
+    
+
 
     public int getQuantidade() {
         return quantidade;
@@ -118,11 +128,13 @@ public class Produto {
     }
     
     public String[] toArray() {
-        String[] produtoArray = new String[4];
+        String[] produtoArray = new String[6];
         produtoArray[TabelaProduto.INDICE_ID_PRODUTO] = String.valueOf(this.getIdProduto());
         produtoArray[TabelaProduto.INDICE_NOME] = this.getNome();
         produtoArray[TabelaProduto.INDICE_VALOR] = String.valueOf(this.getValor());
         produtoArray[TabelaProduto.INDICE_QUANTIDADE] = String.valueOf(this.getQuantidade());
+        produtoArray[TabelaProduto.INDICE_MODELO] = this.getModelo();
+        produtoArray[TabelaProduto.INDICE_CATEGORIA] = this.categoria.getNomeCategoria();
         return produtoArray;
     }
      
