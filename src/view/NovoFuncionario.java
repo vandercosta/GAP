@@ -227,7 +227,6 @@ public class NovoFuncionario extends javax.swing.JFrame implements ComandoJanela
         }
         
         
-
         String diaNascimento = textDiaNascimento.getText();
         String mesNascimento = textMesNascimento.getSelectedItem().toString();
         String anoNascimento = textAnoNascimento.getText();

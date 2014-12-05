@@ -200,7 +200,7 @@ public class MenuFuncionario extends javax.swing.JPanel implements ComandoJanela
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jtFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFuncionarioMouseClicked
-        if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2 && jtFuncionario.getSelectedRow() !=-1) {
             editarFuncionario();
         }
     }//GEN-LAST:event_jtFuncionarioMouseClicked

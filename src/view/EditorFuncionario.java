@@ -282,8 +282,10 @@ public class EditorFuncionario extends javax.swing.JFrame implements ComandoJane
 
     @Override
     public void abrirJanelas(Object obj) {
+        
         this.setLocationRelativeTo(null);
-
+        editado= (Funcionario) obj;
+        textNome.setText(this.editado.getNomeUsuario());
         textCpf.setText(String.valueOf(this.editado.getCpf()));
         textNascimento.setText(this.formatoData.format(this.editado.getDataNascimento().getTime()));
         textTelefone.setText(this.editado.getTelefone());

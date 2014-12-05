@@ -35,6 +35,9 @@ public class Processador {
         comandos.put("novoCliente", "view.NovoCliente");
         comandos.put("editarCliente", "view.EditorCliente");
         
+        comandos.put("novoFornecedor", "view.NovoFornecedor");
+        comandos.put("editarFornecedor", "view.EditorFornecedor");
+        
     }
 
     public static void alterarJanelaInterna(String cmd, MenuPrincipal menuPrincipal) {
